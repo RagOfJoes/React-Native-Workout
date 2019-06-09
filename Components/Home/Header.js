@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         color: '#303031',
         marginRight: 'auto',
         alignSelf: 'center',
-        fontFamily: 'Roboto'
     },
     addWorkout: {
         width: 20,
