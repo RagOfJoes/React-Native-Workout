@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: '#303031',
         marginRight: 'auto',
-        fontFamily: 'Roboto',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontFamily: 'Roboto'
     },
     addWorkout: {
         width: 20,
