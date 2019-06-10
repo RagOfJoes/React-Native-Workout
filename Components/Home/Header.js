@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import normalizeText from '../config/normalizeText';
 
 // TODO: addWorkout should be using drawable folders
 // create action for addWorkout(on press change page or open up a modal to create a new workout plan)
@@ -22,14 +23,16 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         alignSelf: 'center',
         flexDirection: 'row',
-        borderBottomColor: '#D9D9D9',
-        borderBottomWidth: StyleSheet.hairlineWidth
+        borderBottomWidth: .75,
+        borderBottomColor: '#D2D2D2',
     },
     title: {
         fontSize: 25,
         color: '#303031',
+        fontWeight: "400",
         marginRight: 'auto',
         alignSelf: 'center',
+        fontFamily: "Roboto"
     },
     addWorkout: {
         width: 20,
