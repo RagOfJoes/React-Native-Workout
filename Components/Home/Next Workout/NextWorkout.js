@@ -1,38 +1,56 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import normalizeText from '../../config/normalizeText';
 
 const NextWorkout = () => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Next Workout</Text>
-            <Text style={styles.currentWorkout} numberOfLines={1} ellipsizeMode='tail'>BICEP AND TRICEPS</Text>
+        <View style={styles.nextWorkoutContainerStyle}>
+            <View style={styles.nextWorkoutBackgroundStyle}>
+                <View style={styles.nextWorkoutRow}>
+                    <Text style={styles.title} numberOfLines={1}>
+                        Next Workout
+                    </Text>
+                    <Text style={styles.currentWorkout} numberOfLines={1}>
+                        push a
+                    </Text>
+                </View>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        margin: 0,
+    nextWorkoutContainerStyle: {
         height: 170,
-        width: '80%',
+        width: '100%',
         marginTop: 50,
-        paddingTop: 25,
+        alignItems: "center"
+    },
+    nextWorkoutBackgroundStyle: {
+        width: "80%",
+        height: "100%",
         borderRadius: 5,
-        paddingLeft: 20,
-        alignSelf: 'center',
         flexDirection: 'column',
-        backgroundColor: '#303031',
+        backgroundColor: "#303031"
+    },
+    nextWorkoutRow: {
+        margin: 20,
+        flexWrap: "wrap",
     },
     title: {
-        fontSize: 10,
-        color: '#828282',
+        fontSize: 12,
+        paddingLeft: 1,
+        color: "#828282",
+        fontWeight: "bold",
+        fontFamily: "Roboto",
+        textTransform: "uppercase"
     },
     currentWorkout: {
-        left: -1.5,
-        margin: 0,
-        padding: 0,
-        fontSize: 35,
-        color: '#F2F2F2',
+        fontSize: 30,
+        fontWeight: "500",
+        color: "#F2F2F2",
+        fontFamily: "Roboto",
+        textTransform: "uppercase"
     }
 })
 
