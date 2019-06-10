@@ -1,10 +1,14 @@
+import { store } from './Redux/store';
+import { Provider } from 'react-redux';
 import React, { Component } from 'react';
-import Home from './Components/Home/Home';
+import Index from './Components/Index';
 
 export default class App extends Component {
   render() {
     return (
-      <Home />
+      <Provider store={store}>
+        <Index />
+      </Provider>
     );
   }
 }

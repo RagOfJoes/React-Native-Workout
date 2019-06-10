@@ -29,10 +29,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         color: '#303031',
-        fontWeight: "400",
         marginRight: 'auto',
         alignSelf: 'center',
-        fontFamily: "Roboto"
+        fontFamily: 'Roboto-Medium'
     },
     addWorkout: {
         width: 20,

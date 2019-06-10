@@ -39,18 +39,16 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 12,
-        paddingLeft: 1,
+        marginLeft: 1.5,
         color: "#828282",
-        fontWeight: "bold",
-        fontFamily: "Roboto",
+        fontFamily: "Roboto-Bold",
         textTransform: "uppercase"
     },
     currentWorkout: {
         fontSize: 30,
-        fontWeight: "500",
         color: "#F2F2F2",
-        fontFamily: "Roboto",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        fontFamily: "Roboto-Medium"
     }
 })
 
