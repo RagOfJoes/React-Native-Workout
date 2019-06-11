@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import Muscle from './Muscle';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const NextWorkout = () => {
     return (
@@ -18,7 +19,16 @@ const NextWorkout = () => {
                     {/* End Workout Title */}
 
                     {/* Start Muscle Groups */}
-                        
+                    <View style={styles.muscleGroup}>
+                        <Muscle muscleName="Chest" />
+                        <Muscle muscleName="Shoulders" />
+                        <Muscle muscleName="Chest" />
+                        <Muscle muscleName="Arms" />
+                        <Muscle muscleName="Shoulders" />
+                        <TouchableOpacity style={styles.interactWorkout}>
+                            <Image style={{ width: 20, height: 14 }} source={require("../../../assets/Arrow.png")} />
+                        </TouchableOpacity>
+                    </View>
                     {/* End Muscle Groups */}
                 </View>
             </View>
@@ -44,7 +54,10 @@ const styles = StyleSheet.create({
     nextWorkoutRow: {
         height: "100%",
         flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center"
     },
+    // Start Title
     nextWorkoutTitle: {
         width: 115,
         height: "100%",
@@ -56,20 +69,40 @@ const styles = StyleSheet.create({
         backgroundColor: "#3A3A3A",
     },
     title: {
-        fontSize: 10,
+        fontSize: 12,
         marginBottom: -5,
         color: "#828282",
         textAlign: "center",
         textTransform: "uppercase",
-        fontFamily: "Roboto-Medium",
+        fontFamily: "Roboto-Regular",
     },
     currentWorkout: {
-        fontSize: 25,
+        fontSize: 18,
         color: "#F2F2F2",
         textAlign: "center",
         textTransform: "uppercase",
         fontFamily: "Roboto-Medium"
+    },
+    // End Title
+
+    // Start Muscle Group
+    muscleGroup: {
+        flex: 1,
+        flexWrap: "wrap",
+        paddingVertical: 20,
+        flexDirection: "row",
+        alignContent: "flex-start"
+    },
+    interactWorkout: {
+        right: 5,
+        width: 60,
+        height: 60,
+        bottom: 15,
+        alignItems: "center",
+        position: "absolute",
+        justifyContent: "center",
     }
+    // End Muscle Group
 })
 
 export default NextWorkout;
