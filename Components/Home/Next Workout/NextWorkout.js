@@ -1,18 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import normalizeText from '../../config/normalizeText';
 
 const NextWorkout = () => {
     return (
         <View style={styles.nextWorkoutContainerStyle}>
             <View style={styles.nextWorkoutBackgroundStyle}>
                 <View style={styles.nextWorkoutRow}>
-                    <Text style={styles.title} numberOfLines={1}>
-                        Next Workout
-                    </Text>
-                    <Text style={styles.currentWorkout} numberOfLines={1}>
-                        push a
-                    </Text>
+                    {/* Start Workout Title */}
+                    <View style={styles.nextWorkoutTitle}>
+                        <Text style={styles.title} numberOfLines={1}>
+                            Next Workout
+                        </Text>
+                        <Text style={styles.currentWorkout} numberOfLines={3} adjustsFontSizeToFit>
+                            pull a
+                        </Text>
+                    </View>
+                    {/* End Workout Title */}
+
+                    {/* Start Muscle Groups */}
+                        
+                    {/* End Muscle Groups */}
                 </View>
             </View>
         </View>
@@ -29,24 +36,37 @@ const styles = StyleSheet.create({
     nextWorkoutBackgroundStyle: {
         width: "80%",
         height: "100%",
-        borderRadius: 5,
+        borderRadius: 10,
+        alignItems: "flex-start",
         flexDirection: 'column',
-        backgroundColor: "#303031"
+        backgroundColor: "#313030"
     },
     nextWorkoutRow: {
-        margin: 20,
-        flexWrap: "wrap",
+        height: "100%",
+        flexDirection: "row",
+    },
+    nextWorkoutTitle: {
+        width: 115,
+        height: "100%",
+        textAlign: "center",
+        alignItems: "center",
+        borderTopLeftRadius: 10,
+        justifyContent: "center",
+        borderBottomLeftRadius: 10,
+        backgroundColor: "#3A3A3A",
     },
     title: {
-        fontSize: 12,
-        marginLeft: 1.5,
+        fontSize: 10,
+        marginBottom: -5,
         color: "#828282",
-        fontFamily: "Roboto-Bold",
-        textTransform: "uppercase"
+        textAlign: "center",
+        textTransform: "uppercase",
+        fontFamily: "Roboto-Medium",
     },
     currentWorkout: {
-        fontSize: 30,
+        fontSize: 25,
         color: "#F2F2F2",
+        textAlign: "center",
         textTransform: "uppercase",
         fontFamily: "Roboto-Medium"
     }
