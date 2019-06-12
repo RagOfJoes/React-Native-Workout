@@ -19,7 +19,7 @@ const Muscle = (props) => {
             Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Back} />
             break;
         case "Arms":
-            Muscle = <Image style={{ width: 35, height: 28 }} resizeMode="cover" source={Arms} />
+            Muscle = <Image style={{ width: 35, height: 28 }} resizeMode="contain" source={Arms} />
             break;
         case "Legs":
             Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Legs} />
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         marginLeft: 5,
+        borderRadius: 5,
         marginBottom: 15,
-        borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#4A4A4A"

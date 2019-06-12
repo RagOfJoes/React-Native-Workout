@@ -18,9 +18,9 @@ const Header = () => {
 const styles = StyleSheet.create({
     header: {
         top: 45,
-        height: 40,
         width: '80%',
-        marginBottom: 50,
+        height: "auto",
+        marginBottom: 40,
         alignSelf: 'center',
         flexDirection: 'row',
         borderBottomWidth: .75,
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     addWorkout: {
         width: 20,
         height: 20,
-        marginLeft: 'auto',
         alignSelf: 'center'
     }
 })

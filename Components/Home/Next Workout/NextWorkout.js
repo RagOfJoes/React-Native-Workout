@@ -2,10 +2,13 @@ import React from 'react';
 import Muscle from './Muscle';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
+// TODO: Fetch current routine and the day's planned workout
+// 
 const NextWorkout = () => {
     return (
         <View style={styles.nextWorkoutContainerStyle}>
             <View style={styles.nextWorkoutBackgroundStyle}>
+                {/* Start Workout Card */}
                 <View style={styles.nextWorkoutRow}>
                     {/* Start Workout Title */}
                     <View style={styles.nextWorkoutTitle}>
@@ -26,11 +29,12 @@ const NextWorkout = () => {
                         <Muscle muscleName="Arms" />
                         <Muscle muscleName="Shoulders" />
                         <TouchableOpacity style={styles.interactWorkout}>
-                            <Image style={{ width: 20, height: 14 }} source={require("../../../assets/Arrow.png")} />
+                            <Image style={{ width: 25, height: 10 }} source={require("../../../assets/Arrow.png")} />
                         </TouchableOpacity>
                     </View>
                     {/* End Muscle Groups */}
                 </View>
+                {/* End Workout Card */}
             </View>
         </View>
     )
@@ -40,13 +44,13 @@ const styles = StyleSheet.create({
     nextWorkoutContainerStyle: {
         height: 170,
         width: '100%',
-        marginTop: 50,
+        marginTop: 40,
         alignItems: "center"
     },
     nextWorkoutBackgroundStyle: {
         width: "80%",
         height: "100%",
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: "flex-start",
         flexDirection: 'column',
         backgroundColor: "#313030"
@@ -94,15 +98,21 @@ const styles = StyleSheet.create({
         alignContent: "flex-start"
     },
     interactWorkout: {
-        right: 5,
+        right: 4,
         width: 60,
         height: 60,
         bottom: 15,
+        borderRadius: 5,
         alignItems: "center",
         position: "absolute",
         justifyContent: "center",
+        backgroundColor: "#4A4A4A"
     }
     // End Muscle Group
+
+    // Start Current Routine
+
+    // End Current Routine
 })
 
 export default NextWorkout;

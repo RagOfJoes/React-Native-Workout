@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import NextWorkout from './Next Workout/NextWorkout';
+import CurrentRoutine from './Current Routine/CurrentRoutine';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
         <View style={styles.container}>
             <Header />
             <NextWorkout />
+            <CurrentRoutine />
         </View>
     )
 }
