@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from './Card';
 import { View, Text, StyleSheet } from 'react-native';
 
 const CurrentRoutine = (props) => {
@@ -7,6 +8,8 @@ const CurrentRoutine = (props) => {
             <Text style={styles.currentRoutineText}>
                 CURRENT ROUTINE
             </Text>
+            {/* TODO: Horizontal Scrollview */}
+            <Card />
         </View>
     )
 }
