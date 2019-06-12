@@ -53,7 +53,17 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "flex-start",
         flexDirection: 'column',
-        backgroundColor: "#313030"
+        backgroundColor: "#313030",
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+
+        elevation: 7,
     },
     nextWorkoutRow: {
         height: "100%",
