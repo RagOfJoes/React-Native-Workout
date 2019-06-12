@@ -8,7 +8,7 @@ const Card = (props) => {
     return (
         <TouchableOpacity style={styles.cardContainer}>
             <View style={styles.routineContainer}>
-                <Text style={styles.routineName}>push</Text>
+                <Text style={styles.routineName} numberOfLines={3}>push</Text>
             </View>
             <View style={styles.dateContainer}>
                 <Text style={styles.date}>monday</Text>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     routineName: {
         fontSize: 18,
         color: "#F2A727",
+        textAlign: "center",
         textTransform: "uppercase",
         fontFamily: "Roboto-Medium"
     },
