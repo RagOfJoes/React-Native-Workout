@@ -29,7 +29,7 @@ const NextWorkout = () => {
                         <Muscle muscleName="Arms" />
                         <Muscle muscleName="Shoulders" />
                         <TouchableOpacity style={styles.interactWorkout}>
-                            <Image style={{ width: 30, height: 15 }} resizeMode="contain" source={require("../../../assets/Arrow.png")} />
+                            <Text style={styles.startWorkout} numberOfLines={2}>START / EDIT</Text>
                         </TouchableOpacity>
                     </View>
                     {/* End Muscle Groups */}
@@ -115,8 +115,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         position: "absolute",
-        justifyContent: "center",
         backgroundColor: "#4A4A4A"
+    },
+    startWorkout: {
+        fontSize: 12,
+        color: "#F2A727",
+        marginTop: "auto",
+        textAlign: "center",
+        marginBottom: "auto",
+        fontFamily: "Roboto-Medium"
     }
     // End Muscle Group
 
