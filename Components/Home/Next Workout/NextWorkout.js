@@ -29,7 +29,7 @@ const NextWorkout = () => {
                         <Muscle muscleName="Arms" />
                         <Muscle muscleName="Shoulders" />
                         <TouchableOpacity style={styles.interactWorkout}>
-                            <Image style={{ width: 25, height: 10 }} source={require("../../../assets/Arrow.png")} />
+                            <Image style={{ width: 30, height: 15 }} resizeMode="contain" source={require("../../../assets/Arrow.png")} />
                         </TouchableOpacity>
                     </View>
                     {/* End Muscle Groups */}

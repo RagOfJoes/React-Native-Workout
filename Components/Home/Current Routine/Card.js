@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     cardContainer: {
         width: 80,
         height: 130,
-        marginTop: 10,
         borderRadius: 5,
-        marginRight: 10,
+        marginVertical: 10,
+        marginHorizontal: 5,
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
