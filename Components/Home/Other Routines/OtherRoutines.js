@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 const OtherRoutines = (props) => {
     return (
         <View style={styles.otherRoutineContainer}>
-            <View style={{ width: "80%", height: "100%" }}>
+            <View style={{ width: "80%", height: "100%", justifyContent: "center" }}>
                 <View style={styles.otherRoutineTitleRow}>
                     <Text style={styles.otherRoutineTextOne}>OTHER ROUTINES</Text>
                     <TouchableOpacity>
@@ -30,13 +30,14 @@ const styles = StyleSheet.create({
         height: 140,
         width: "100%",
         marginTop: 40,
+        paddingTop: 25,
         alignItems: "center",
         flexDirection: "column",
         backgroundColor: "#FFF"
     },
     otherRoutineTitleRow: {
         flex: .5,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     otherRoutineTextOne: {
         fontSize: 14,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         fontFamily: "Roboto-Regular"
     },
     otherRoutineCardsRow: {
-        flex: 3.5,
+        flex: 3,
         overflow: "hidden",
         flexDirection: "row",
     }
