@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from './Card';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const OtherRoutines = (props) => {
@@ -13,7 +14,11 @@ const OtherRoutines = (props) => {
                 </View>
 
                 <View style={styles.otherRoutineCardsRow}>
-
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
                 </View>
             </View>
         </View>
@@ -47,6 +52,8 @@ const styles = StyleSheet.create({
     },
     otherRoutineCardsRow: {
         flex: 3.5,
+        overflow: "hidden",
+        flexDirection: "row",
     }
 })
 
