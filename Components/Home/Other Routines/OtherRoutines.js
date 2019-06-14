@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     otherRoutineContainer: {
         height: 140,
         width: "100%",
-        marginTop: 40,
+        // marginTop: 40,
         paddingTop: 25,
         alignItems: "center",
         flexDirection: "column",
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         flex: 3,
         overflow: "hidden",
         flexDirection: "row",
+        justifyContent: "space-between"
     }
 })
 

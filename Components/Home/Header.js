@@ -17,10 +17,10 @@ const Header = () => {
 
 const styles = StyleSheet.create({
     header: {
-        top: 45,
+        // top: 45,
         width: '80%',
         height: "auto",
-        marginBottom: 40,
+        // marginBottom: 40,
         alignSelf: 'center',
         flexDirection: 'row',
         borderBottomWidth: .75,
