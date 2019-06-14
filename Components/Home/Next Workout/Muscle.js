@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     muscleContainer: {
         width: 60,
         height: 60,
-        marginLeft: 5,
         borderRadius: 5,
         marginVertical: 5,
         alignItems: "center",

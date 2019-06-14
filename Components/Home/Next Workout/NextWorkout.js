@@ -27,7 +27,7 @@ const NextWorkout = () => {
                         <Muscle muscleName="Shoulders" />
                         <Muscle muscleName="Chest" />
                         <Muscle muscleName="Arms" />
-                        <Muscle muscleName="Shoulders" />
+                        {/* <Muscle muscleName="Shoulders" /> */}
                         <TouchableOpacity style={styles.interactWorkout}>
                             <Image source={require("../../../assets/StartEdit.png")} style={{ width: 28, height: 34 }} resizeMode="cover" />
                         </TouchableOpacity>
@@ -101,18 +101,14 @@ const styles = StyleSheet.create({
     // Start Muscle Group
     muscleGroup: {
         flex: 1,
-        paddingRight: 5,
         flexWrap: "wrap",
-        paddingVertical: 20,
+        alignSelf: "center",
         flexDirection: "row",
-        alignContent: "center",
-        justifyContent: "center"
+        justifyContent: "space-evenly"
     },
     interactWorkout: {
-        // right: 4,
         width: 60,
         height: 60,
-        marginLeft: 5,
         borderRadius: 5,
         marginVertical: 5,
         alignItems: "center",
