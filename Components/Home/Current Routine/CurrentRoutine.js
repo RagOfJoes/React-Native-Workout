@@ -18,7 +18,7 @@ class CurrentRoutine extends Component {
                     </Text>
                 </View>
 
-                <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isRoutineScrolled = isScrolled(nativeEvent); }} horizontal showsHorizontalScrollIndicator={false} snap>
+                <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isRoutineScrolled = isScrolled(nativeEvent); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
                     <Card />
                     <Card />
                     <Card />
