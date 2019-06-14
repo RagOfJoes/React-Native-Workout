@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 3,
+            height: 2,
         },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
 
-        elevation: 7,
+        elevation: 4,
     },
     routineContainer: {
         flex: 3,
