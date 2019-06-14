@@ -15,10 +15,9 @@ const OtherRoutines = (props) => {
 
                 <View style={styles.otherRoutineCardsRow}>
                     <Card />
+                    {/* <Card />
                     <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    <Card /> */}
                 </View>
             </View>
         </View>
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     otherRoutineContainer: {
         height: 140,
         width: "100%",
-        // marginTop: 40,
         paddingTop: 25,
         alignItems: "center",
         flexDirection: "column",

@@ -12,8 +12,11 @@ const Card = (props) => {
 const styles = StyleSheet.create({
     otherRoutinesCardContainer: {
         margin: 4,
-        width: 70,
-        height: 70,
+        flex: 1.25,
+        height: 80,
+        maxWidth: 75,
+        maxHeight: 80,
+        paddingHorizontal: 5,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#F2F2F2",
