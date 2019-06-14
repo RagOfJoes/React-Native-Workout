@@ -12,10 +12,12 @@ class CurrentRoutine extends Component {
     render() {
         return (
             <View style={styles.currentRoutineContainer}>
-                <Text style={styles.currentRoutineText}>
-                    CURRENT ROUTINE
-                </Text>
-                {/* TODO: Horizontal Scrollview */}
+                <View style={{ borderBottomWidth: .75, borderBottomColor: "#D2D2D2" }}>
+                    <Text style={styles.currentRoutineText}>
+                        CURRENT ROUTINE
+                    </Text>
+                </View>
+
                 <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isRoutineScrolled = isScrolled(nativeEvent); }} horizontal showsHorizontalScrollIndicator={false} snap>
                     <Card />
                     <Card />
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
     currentRoutineContainer: {
         height: 170,
         width: "80%",
-        marginTop: 40,
+        // marginTop: 40,
         overflow: "visible",
         alignSelf: "center",
         flexDirection: "column",
@@ -51,9 +53,7 @@ const styles = StyleSheet.create({
     currentRoutineText: {
         fontSize: 14,
         color: "#313030",
-        borderBottomWidth: .75,
         fontFamily: "Roboto-Medium",
-        borderBottomColor: '#D2D2D2',
     },
     currentRoutineNextLeftContainer: {
         left: -5,

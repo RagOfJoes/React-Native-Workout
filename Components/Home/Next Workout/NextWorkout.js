@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     nextWorkoutContainerStyle: {
         height: 170,
         width: '100%',
-        marginTop: 40,
+        // marginTop: 40,
         alignItems: "center"
     },
     nextWorkoutBackgroundStyle: {
