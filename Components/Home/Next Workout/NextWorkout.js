@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     nextWorkoutContainerStyle: {
         height: 170,
         width: '100%',
-        // marginTop: 40,
         alignItems: "center"
     },
     nextWorkoutBackgroundStyle: {
@@ -105,16 +104,17 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         paddingVertical: 20,
         flexDirection: "row",
-        alignContent: "flex-start"
+        alignContent: "center",
+        justifyContent: "center"
     },
     interactWorkout: {
-        right: 4,
+        // right: 4,
         width: 60,
         height: 60,
-        bottom: 15,
+        marginLeft: 5,
         borderRadius: 5,
+        marginVertical: 5,
         alignItems: "center",
-        position: "absolute",
         justifyContent: 'center',
         backgroundColor: "#4A4A4A"
     },
