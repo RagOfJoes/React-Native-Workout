@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     // Start Muscle Group
     muscleGroup: {
         flex: 1,
+        paddingRight: 5,
         flexWrap: "wrap",
         paddingVertical: 20,
         flexDirection: "row",
