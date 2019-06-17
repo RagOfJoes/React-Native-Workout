@@ -1,4 +1,6 @@
 import React from 'react';
+import { color } from '../config/colors';
+import { fontSize } from '../config/fontSize';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import normalizeText from '../config/normalizeText';
 
@@ -7,9 +9,9 @@ import normalizeText from '../config/normalizeText';
 const Header = () => {
     return (
         <View style={styles.header}>
-            <Text style={styles.title}>WORKOUTS</Text>
+            <Text style={[fontSize.PAGE_TITLE, styles.title]}>WORKOUTS</Text>
             <TouchableOpacity style={styles.addWorkout} onPress={() => console.log("Pressed")}>
-                <Image style={{ width: 20, height: 20 }} resizeMode="contain" source={require("../../assets/addWorkout.png")} />
+                <Image style={{ width: 30, height: 30 }} resizeMode="contain" source={require("../../assets/addWorkout.png")} />
             </TouchableOpacity>
         </View>
     )
@@ -17,25 +19,21 @@ const Header = () => {
 
 const styles = StyleSheet.create({
     header: {
-        // top: 45,
         width: '80%',
         height: "auto",
-        // marginBottom: 40,
         alignSelf: 'center',
         flexDirection: 'row',
         borderBottomWidth: .75,
-        borderBottomColor: '#D2D2D2',
+        borderBottomColor: color.HIGHLIGHT,
     },
     title: {
-        fontSize: 25,
-        color: '#303031',
+        color: color.WHITE,
         marginRight: 'auto',
         alignSelf: 'center',
-        fontFamily: 'Roboto-Medium'
     },
     addWorkout: {
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
         alignSelf: 'center'
     }
 })

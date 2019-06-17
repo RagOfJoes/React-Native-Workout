@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { color } from '../../config/colors';
+import { fontSize } from '../../config/fontSize';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 // TODO: Check if date is today if so then change color to indicate as such
 const Card = (props) => {
-    const { date, routineName } = props;
+    // const { date, routineName } = props;
 
     return (
         <TouchableOpacity style={styles.cardContainer}>
             <View style={styles.routineContainer}>
-                <Text style={styles.routineName} numberOfLines={3}>push</Text>
+                <Text style={[fontSize.CARD_CONTENT, styles.routineName]} numberOfLines={3}>push</Text>
             </View>
             <View style={styles.dateContainer}>
-                <Text style={styles.date}>monday</Text>
+                <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.date]}>monday</Text>
             </View>
         </TouchableOpacity>
     )
@@ -19,14 +21,15 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
     cardContainer: {
-        width: 80,
-        height: 130,
+        flex: 1,
+        maxWidth: 80,
+        maxHeight: 130,
         borderRadius: 5,
-        marginVertical: 10,
-        marginHorizontal: 5,
+        marginVertical: 5,
+        marginHorizontal: 4,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#F8F8F8",
+        backgroundColor: color.SECONDARY_DARK,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -43,11 +46,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     routineName: {
-        fontSize: 18,
-        color: "#F2A727",
+        color: color.WHITE,
         textAlign: "center",
         textTransform: "uppercase",
-        fontFamily: "Roboto-Medium"
     },
     dateContainer: {
         flex: .4,
@@ -55,14 +56,12 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
     },
     date: {
-        fontSize: 10,
         width: "100%",
-        color: "#313030",
+        color: color.WHITE,
         borderTopWidth: .75,
         textAlign: "center",
-        borderTopColor: "#313030",
+        borderTopColor: color.HIGHLIGHT,
         textTransform: "uppercase",
-        fontFamily: "Roboto-Regular"
     }
 })
 

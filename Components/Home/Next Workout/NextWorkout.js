@@ -1,5 +1,7 @@
 import React from 'react';
 import Muscle from './Muscle';
+import { color } from '../../config/colors';
+import { fontSize } from '../../config/fontSize';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 // TODO: Fetch current routine and the day's planned workout
@@ -12,10 +14,10 @@ const NextWorkout = () => {
                 <View style={styles.nextWorkoutRow}>
                     {/* Start Workout Title */}
                     <View style={styles.nextWorkoutTitle}>
-                        <Text style={styles.title} numberOfLines={1}>
+                        <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={1}>
                             Next Workout
                         </Text>
-                        <Text style={styles.currentWorkout} numberOfLines={3} adjustsFontSizeToFit>
+                        <Text style={[fontSize.CARD_CONTENT, styles.currentWorkout]} numberOfLines={3} adjustsFontSizeToFit>
                             pull a
                         </Text>
                     </View>
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "flex-start",
         flexDirection: 'column',
-        backgroundColor: "#313030",
+        backgroundColor: color.SECONDARY_DARK,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -76,25 +78,21 @@ const styles = StyleSheet.create({
         height: "100%",
         textAlign: "center",
         alignItems: "center",
-        borderTopLeftRadius: 10,
+        borderTopLeftRadius: 5,
         justifyContent: "center",
-        borderBottomLeftRadius: 10,
-        backgroundColor: "#3A3A3A",
+        borderBottomLeftRadius: 5,
+        backgroundColor: color.TERTIARY_DARK,
     },
     title: {
-        fontSize: 12,
         marginBottom: -5,
-        color: "#828282",
+        color: color.GREY,
         textAlign: "center",
         textTransform: "uppercase",
-        fontFamily: "Roboto-Regular",
     },
     currentWorkout: {
-        fontSize: 18,
-        color: "#F2F2F2",
+        color: color.WHITE,
         textAlign: "center",
         textTransform: "uppercase",
-        fontFamily: "Roboto-Medium"
     },
     // End Title
 
@@ -113,21 +111,19 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         alignItems: "center",
         justifyContent: 'center',
-        backgroundColor: "#4A4A4A"
-    },
-    startWorkout: {
-        fontSize: 12,
-        color: "#F2A727",
-        marginTop: "auto",
-        textAlign: "center",
-        marginBottom: "auto",
-        fontFamily: "Roboto-Medium"
+        backgroundColor: color.TERTIARY_DARK,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     }
     // End Muscle Group
-
-    // Start Current Routine
-
-    // End Current Routine
 })
 
 export default NextWorkout;

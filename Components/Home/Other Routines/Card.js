@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { color } from '../../config/colors';
+import { fontSize } from '../../config/fontSize';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 const Card = (props) => {
     return (
         <TouchableOpacity style={styles.otherRoutinesCardContainer}>
-            <Text style={styles.otherRoutinesCardText} numberOfLines={3}>stronglift 5x5</Text>
+            <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutinesCardText]} numberOfLines={3}>stronglift 5x5</Text>
         </TouchableOpacity>
     )
 }
@@ -13,13 +15,12 @@ const styles = StyleSheet.create({
     otherRoutinesCardContainer: {
         margin: 4,
         flex: 1.25,
-        height: 80,
         maxWidth: 75,
-        maxHeight: 80,
-        paddingHorizontal: 5,
+        maxHeight: 70,
         alignItems: "center",
+        paddingHorizontal: 5,
         justifyContent: "center",
-        backgroundColor: "#F2F2F2",
+        backgroundColor: color.TERTIARY_DARK,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -32,11 +33,9 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     otherRoutinesCardText: {
-        fontSize: 10,
-        color: "#828282",
+        color: color.WHITE,
         textAlign: "center",
         textTransform: "uppercase",
-        fontFamily: "Roboto-Regular"
     }
 })
 

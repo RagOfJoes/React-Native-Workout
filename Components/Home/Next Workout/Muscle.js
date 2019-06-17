@@ -1,4 +1,5 @@
 import React from 'react';
+import { color } from '../../config/colors';
 import Abs from '../../../assets/Abs.png';
 import Back from '../../../assets/Back.png';
 import Arms from '../../../assets/Arms.png';
@@ -52,7 +53,17 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#4A4A4A"
+        backgroundColor: color.TERTIARY_DARK,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     }
 })
 

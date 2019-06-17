@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './Card';
+import { color } from '../../config/colors';
+import { fontSize } from '../../config/fontSize';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const OtherRoutines = (props) => {
@@ -7,17 +9,17 @@ const OtherRoutines = (props) => {
         <View style={styles.otherRoutineContainer}>
             <View style={{ width: "80%", height: "100%", justifyContent: "center" }}>
                 <View style={styles.otherRoutineTitleRow}>
-                    <Text style={styles.otherRoutineTextOne}>OTHER ROUTINES</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.otherRoutineTextTwo}>SEE ALL</Text>
+                    <Text style={[fontSize.SECTION_TITLE, styles.otherRoutineTextOne]}>OTHER ROUTINES</Text>
+                    <TouchableOpacity style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}>
+                        <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutineTextTwo]}>SEE ALL</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.otherRoutineCardsRow}>
                     <Card />
-                    {/* <Card />
                     <Card />
-                    <Card /> */}
+                    <Card />
+                    <Card />
                 </View>
             </View>
         </View>
@@ -31,23 +33,19 @@ const styles = StyleSheet.create({
         paddingTop: 25,
         alignItems: "center",
         flexDirection: "column",
-        backgroundColor: "#FFF"
+        backgroundColor: color.SECONDARY_DARK
     },
     otherRoutineTitleRow: {
-        flex: .5,
+        flex: .75,
         flexDirection: 'row',
     },
     otherRoutineTextOne: {
-        fontSize: 14,
-        color: "#313030",
+        color: color.WHITE,
         marginRight: "auto",
-        fontFamily: "Roboto-Medium"
     },
     otherRoutineTextTwo: {
-        fontSize: 10,
-        color: "#828282",
-        marginTop: "auto",
-        fontFamily: "Roboto-Regular"
+        color: color.GREY,
+        alignSelf: "flex-end"
     },
     otherRoutineCardsRow: {
         flex: 3,

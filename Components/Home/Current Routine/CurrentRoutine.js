@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import { color } from '../../config/colors';
+import { fontSize } from '../../config/fontSize';
 import RoutineBackArrow from '../../../assets/RoutineBackArrow.png';
 import RoutineNextArrow from '../../../assets/RoutineNextArrow.png';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
-const isScrolled = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    return contentOffset.x > 0;
-}
+
 
 class CurrentRoutine extends Component {
+    isScrolled = (contentOffset) => {
+        return contentOffset.x > 0;
+    }
+
     render() {
         return (
             <View style={styles.currentRoutineContainer}>
-                <View style={{ borderBottomWidth: .75, borderBottomColor: "#D2D2D2" }}>
-                    <Text style={styles.currentRoutineText}>
+                <View style={{ borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
+                    <Text style={[fontSize.SECTION_TITLE, styles.currentRoutineText]}>
                         CURRENT ROUTINE
                     </Text>
                 </View>
 
-                <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isRoutineScrolled = isScrolled(nativeEvent); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
+                <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isScrolled(nativeEvent.contentOffset); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
                     <Card />
                     <Card />
                     <Card />
@@ -28,14 +32,14 @@ class CurrentRoutine extends Component {
                     <Card />
                 </ScrollView>
 
-                {/* Left Arrow */}
-                <TouchableOpacity style={styles.currentRoutineNextLeftContainer} onPress={() => this._scrollRoutine.scrollTo({ x: 0, y: 0 })}>
+                {/* Left Arrow | TODO: Make this component conditional */}
+                {/* <TouchableOpacity style={styles.currentRoutineNextLeftContainer} onPress={() => this._scrollRoutine.scrollTo({ x: 0, y: 0 })}>
                     <Image source={RoutineBackArrow} style={{ width: 40, height: 40, alignSelf: "center" }} resizeMode="cover" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 {/* Right Arrow */}
-                <TouchableOpacity style={styles.currentRoutineNextRightContainer} onPress={() => this._scrollRoutine.scrollToEnd()}>
+                {/* <TouchableOpacity style={styles.currentRoutineNextRightContainer} onPress={() => this._scrollRoutine.scrollToEnd()}>
                     <Image source={RoutineNextArrow} style={{ width: 40, height: 40, alignSelf: "center" }} resizeMode="cover" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         )
     }
@@ -45,15 +49,12 @@ const styles = StyleSheet.create({
     currentRoutineContainer: {
         height: 170,
         width: "80%",
-        // marginTop: 40,
         overflow: "visible",
         alignSelf: "center",
         flexDirection: "column",
     },
     currentRoutineText: {
-        fontSize: 14,
-        color: "#313030",
-        fontFamily: "Roboto-Medium",
+        color: color.WHITE,
     },
     currentRoutineNextLeftContainer: {
         left: -5,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     },
     currentRoutineNextRightContainer: {
         right: -5,
-        top: "50%",
+        // top: "50%",
         alignItems: "center",
         position: "absolute",
         justifyContent: "center",
