@@ -17,7 +17,7 @@ class Index extends Component {
 
     render() {
         return (
-            // TODO: Create a loding
+            // TODO: Create a loading screen
             this.props.isFontLoaded ?
                 <Nav />
                 : null
