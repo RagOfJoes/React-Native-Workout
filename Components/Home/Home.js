@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
 import Header from './Header';
+import React, { Component } from 'react';
 import { color } from '../config/colors';
+import { View, StyleSheet } from 'react-native';
 import NextWorkout from './Next Workout/NextWorkout';
 import OtherRoutines from './Other Routines/OtherRoutines';
 import CurrentRoutine from './Current Routine/CurrentRoutine';
-import { View, StyleSheet } from 'react-native';
 
 class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header />
+                <Header navigation={this.props.navigation} />
                 <NextWorkout />
                 <CurrentRoutine />
                 <OtherRoutines />
