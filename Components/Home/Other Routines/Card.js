@@ -1,7 +1,7 @@
 import React from 'react';
 import { color } from '../../config/colors';
 import { fontSize } from '../../config/fontSize';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, Dimensions, StyleSheet } from 'react-native';
 
 const Card = (props) => {
     return (
@@ -13,29 +13,30 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
     otherRoutinesCardContainer: {
-        margin: 4,
-        flex: 1.25,
-        maxWidth: 75,
-        maxHeight: 70,
+        flex: 1,
+        margin: 5,
+        alignContent: "center",
         alignItems: "center",
-        paddingHorizontal: 5,
         justifyContent: "center",
         backgroundColor: color.TERTIARY_DARK,
+        height: Dimensions.get("window").width / 5,
 
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
 
-        elevation: 4,
+        elevation: 5,
     },
     otherRoutinesCardText: {
+        lineHeight: 10,
         color: color.WHITE,
         textAlign: "center",
         textTransform: "uppercase",
+        textAlignVertical: "center",
     }
 })
 

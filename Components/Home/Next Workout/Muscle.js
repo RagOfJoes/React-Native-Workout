@@ -6,7 +6,7 @@ import Arms from '../../../assets/Arms.png';
 import Legs from '../../../assets/Legs.png';
 import Chest from '../../../assets/Chest.png';
 import Shoulders from '../../../assets/Shoulders.png';
-import { Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 
 const Muscle = (props) => {
     const { muscleName } = props;
@@ -14,56 +14,76 @@ const Muscle = (props) => {
 
     switch (muscleName) {
         case "Abs":
-            Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Abs} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Abs} />
+                </TouchableOpacity>
+            )
         case "Back":
-            Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Back} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Back} />
+                </TouchableOpacity>
+            )
         case "Arms":
-            Muscle = <Image style={{ width: 35, height: 28 }} resizeMode="contain" source={Arms} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 35, height: 28 }} resizeMode="contain" source={Arms} />
+                </TouchableOpacity>
+            )
         case "Legs":
-            Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Legs} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 20, height: 33 }} resizeMode="cover" source={Legs} />
+                </TouchableOpacity>
+            )
         case "Chest":
-            Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Chest} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Chest} />
+                </TouchableOpacity>
+            )
         case "Shoulders":
-            Muscle = <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Shoulders} />
-            break;
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image style={{ width: 35, height: 35 }} resizeMode="cover" source={Shoulders} />
+                </TouchableOpacity>
+            )
+        case "Empty":
+            return (
+                <View style={{ flex: 1, margin: 2, height: Dimensions.get("screen").width / 5.75 }} />
+            )
+        case "Last":
+            return (
+                <TouchableOpacity style={styles.muscleContainer}>
+                    <Image source={require("../../../assets/StartEdit.png")} style={{ width: 28, height: 34 }} resizeMode="cover" />
+                </TouchableOpacity>
+            )
         default:
-            Muscle = null;
-            break;
+            return null;
     }
-
-    // TODO: If no muscle was selected then append an error
-    return (
-        <TouchableOpacity style={styles.muscleContainer}>
-            {Muscle}
-        </TouchableOpacity>
-    )
 
 }
 
 const styles = StyleSheet.create({
     muscleContainer: {
-        width: 60,
-        height: 60,
+        flex: 1,
+        margin: 2,
         borderRadius: 5,
-        marginVertical: 5,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: color.TERTIARY_DARK,
+        height: Dimensions.get("screen").width / 5.75, // approximate a square
 
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
 
-        elevation: 4,
+        elevation: 5,
     }
 })
 
