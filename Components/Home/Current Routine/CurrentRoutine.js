@@ -15,31 +15,33 @@ class CurrentRoutine extends Component {
 
     render() {
         return (
-            <View style={styles.currentRoutineContainer}>
-                <View style={{ borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
-                    <Text style={[fontSize.SECTION_TITLE, styles.currentRoutineText]}>
-                        CURRENT ROUTINE
+            <View style={{ flex: .35, overflow: 'hidden', justifyContent: "center" }}>
+                <View style={styles.currentRoutineContainer}>
+                    <View style={{ borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
+                        <Text style={[fontSize.SECTION_TITLE, styles.currentRoutineText]}>
+                            CURRENT ROUTINE
                     </Text>
-                </View>
+                    </View>
 
-                <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isScrolled(nativeEvent.contentOffset); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                </ScrollView>
+                    <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isScrolled(nativeEvent.contentOffset); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                    </ScrollView>
 
-                {/* Left Arrow | TODO: Make this component conditional */}
-                {/* <TouchableOpacity style={styles.currentRoutineNextLeftContainer} onPress={() => this._scrollRoutine.scrollTo({ x: 0, y: 0 })}>
+                    {/* Left Arrow | TODO: Make this component conditional */}
+                    {/* <TouchableOpacity style={styles.currentRoutineNextLeftContainer} onPress={() => this._scrollRoutine.scrollTo({ x: 0, y: 0 })}>
                     <Image source={RoutineBackArrow} style={{ width: 40, height: 40, alignSelf: "center" }} resizeMode="cover" />
                 </TouchableOpacity> */}
-                {/* Right Arrow */}
-                {/* <TouchableOpacity style={styles.currentRoutineNextRightContainer} onPress={() => this._scrollRoutine.scrollToEnd()}>
+                    {/* Right Arrow */}
+                    {/* <TouchableOpacity style={styles.currentRoutineNextRightContainer} onPress={() => this._scrollRoutine.scrollToEnd()}>
                     <Image source={RoutineNextArrow} style={{ width: 40, height: 40, alignSelf: "center" }} resizeMode="cover" />
                 </TouchableOpacity> */}
+                </View>
             </View>
         )
     }
@@ -48,7 +50,7 @@ class CurrentRoutine extends Component {
 const styles = StyleSheet.create({
     currentRoutineContainer: {
         height: 170,
-        width: "80%",
+        width: "90%",
         overflow: "visible",
         alignSelf: "center",
         flexDirection: "column",

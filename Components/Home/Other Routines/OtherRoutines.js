@@ -6,11 +6,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const OtherRoutines = (props) => {
     return (
-        <View style={styles.otherRoutineContainer}>
-            <View style={{ width: "80%", height: "100%", justifyContent: "center" }}>
+        <View style={{ flex: .2, flexDirection: "column", justifyContent: "center", alignItems: "center", borderTopColor: color.HIGHLIGHT, borderTopWidth: .75, backgroundColor: color.SECONDARY_DARK }}>
+            <View style={styles.otherRoutineContainer}>
                 <View style={styles.otherRoutineTitleRow}>
                     <Text style={[fontSize.SECTION_TITLE, styles.otherRoutineTextOne]}>OTHER ROUTINES</Text>
-                    <TouchableOpacity style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}>
+                    <TouchableOpacity style={{ flexDirection: "column", justifyContent: "center" }}>
                         <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutineTextTwo]}>SEE ALL</Text>
                     </TouchableOpacity>
                 </View>
@@ -28,15 +28,14 @@ const OtherRoutines = (props) => {
 
 const styles = StyleSheet.create({
     otherRoutineContainer: {
-        height: 140,
-        width: "100%",
-        paddingTop: 25,
-        alignItems: "center",
+        flex: .75,
+        width: "90%",
+        alignSelf: "center",
         flexDirection: "column",
-        backgroundColor: color.SECONDARY_DARK
+        justifyContent: "center",
     },
     otherRoutineTitleRow: {
-        flex: .75,
+        flex: .7,
         flexDirection: 'row',
     },
     otherRoutineTextOne: {
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
         marginRight: "auto",
     },
     otherRoutineTextTwo: {
+        marginTop: "auto",
         color: color.GREY,
-        alignSelf: "flex-end"
     },
     otherRoutineCardsRow: {
         flex: 3,
