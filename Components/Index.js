@@ -1,7 +1,7 @@
+import Nav from './Nav/Nav';
 import * as Font from 'expo-font';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import Nav from './Nav/Nav';
 import { isFontLoaded } from '../Redux/Actions/initLoadAction';
 
 class Index extends Component {
