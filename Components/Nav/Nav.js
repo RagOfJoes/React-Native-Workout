@@ -1,8 +1,7 @@
 import React from 'react';
-import Home from '../Home/Home';
 import { Image } from 'react-native';
 import { color } from '../config/colors';
-import { HomeStackNav } from '../Home/StackNav/HomeStackNav';
+import HomeStack from '../Home/Stack/HomeStack';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 // Icons
@@ -14,7 +13,7 @@ import ScaleInactive from '../../assets/Scale-Inactive.png';
 const Nav = createBottomTabNavigator(
     {
         Home: {
-            screen: HomeStackNav,
+            screen: HomeStack,
             navigationOptions: {
                 tabBarIcon: ({ focused, horizontal, tintColor }) => {
                     return (
