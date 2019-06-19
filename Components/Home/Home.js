@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Sections/Header';
 import { color } from '../config/colors';
 import { View, StyleSheet } from 'react-native';
 import NextWorkout from './Sections/Next Workout/NextWorkout';
@@ -9,7 +8,6 @@ import CurrentRoutine from './Sections/Current Routine/CurrentRoutine';
 const Home = (props) => {
     return (
         <View style={styles.container}>
-            <Header />
             <NextWorkout />
             <CurrentRoutine />
             <OtherRoutines />
