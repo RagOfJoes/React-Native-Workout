@@ -33,7 +33,7 @@ const HomeStack = createStackNavigator(
     },
     {
         // TODO: Change back to home
-        initialRouteName: "Home",
+        initialRouteName: "NewRoutine",
     }
 );
 

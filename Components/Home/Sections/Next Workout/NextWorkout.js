@@ -24,7 +24,10 @@ const formatData = (data, numColumns) => {
 };
 
 class NextWorkout extends Component {
-    _keyExtractor = (index) => index;
+    _keyExtractor = (index) => {
+        return index
+    };
+
     render() {
         return (
             <View style={{ flex: .35, overflow: "hidden", justifyContent: "center" }}>
