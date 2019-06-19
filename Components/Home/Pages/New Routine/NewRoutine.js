@@ -1,4 +1,5 @@
 import React from 'react';
+import NormalCard from './NormalCard';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
@@ -10,22 +11,31 @@ const NewRoutine = (props) => {
                 <View style={styles.routineNameRow}>
                     <View style={styles.routineNameCol}>
                         <TextInput
-                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}
+                            maxLength={30}
+                            numberOfLines={1}
                             placeholder="Routine Name"
-                            placeholderTextColor={color.GREY}>
+                            placeholderTextColor={color.GREY}
+                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}
+                        >
                         </TextInput>
                     </View>
                     <View style={styles.routineNameCol}>
                         <TextInput
-                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}
-                            placeholder="Goals(Optional)"
-                            placeholderTextColor={color.GREY}>
+                            maxLength={60}
+                            numberOfLines={2}
+                            placeholder="Goals(Optional) "
+                            placeholderTextColor={color.GREY}
+                            multiline={true}
+                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}>
                         </TextInput>
                     </View>
                 </View>
                 <View style={styles.exercisesRow}>
                     <View style={styles.exercisesTitleCol}>
                         <Text style={[fontSize.SECTION_TITLE, styles.exercisesTitle]}>EXERCISES</Text>
+                    </View>
+                    <View style={styles.exercisesCardCol}>
+                        <NormalCard />
                     </View>
                 </View>
             </View>
@@ -72,7 +82,9 @@ const styles = StyleSheet.create({
         height: 35,
         width: "80%",
         borderRadius: 5,
+        alignItems: "center",
         flexDirection: "row",
+        paddingHorizontal: 30,
         alignContent: "center",
         justifyContent: "center",
         backgroundColor: color.TERTIARY_DARK,
@@ -88,8 +100,9 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     routineNameText: {
+        alignSelf: "center",
         color: color.WHITE,
-        textAlign: "center"
+        textAlignVertical: "center"
     },
     // End Routine Name
 
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
     exercisesRow: {
         flex: 1,
         width: "90%",
-        marginTop: 10,
+        marginTop: 30,
         height: "100%",
         borderRadius: 5,
         paddingVertical: 15,
@@ -126,6 +139,15 @@ const styles = StyleSheet.create({
     exercisesTitle: {
         color: color.WHITE,
         textAlign: 'center'
+    },
+    exercisesCardCol: {
+        flex: 1,
+        marginTop: 10,
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
     }
     // End Exercises
 })
