@@ -30,7 +30,7 @@ class NextWorkout extends Component {
 
     render() {
         return (
-            <View style={{ flex: .35, overflow: "hidden", justifyContent: "center" }}>
+            <View style={{ flex: .5, overflow: "hidden", justifyContent: "center" }}>
                 <View style={styles.nextWorkoutContainerStyle}>
                     <View style={styles.nextWorkoutBackgroundStyle}>
                         {/* Start Workout Card */}

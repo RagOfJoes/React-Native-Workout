@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const OtherRoutines = (props) => {
     return (
-        <View style={{ flex: .2, flexDirection: "column", justifyContent: "center", alignItems: "center", borderTopColor: color.HIGHLIGHT, borderTopWidth: .75, backgroundColor: color.SECONDARY_DARK }}>
+        <View style={{ flex: .35, flexDirection: "column", justifyContent: "center", alignItems: "center", borderTopColor: color.HIGHLIGHT, borderTopWidth: .75, backgroundColor: color.SECONDARY_DARK }}>
             <View style={styles.otherRoutineContainer}>
                 <View style={styles.otherRoutineTitleRow}>
                     <Text style={[fontSize.SECTION_TITLE, styles.otherRoutineTextOne]}>OTHER ROUTINES</Text>
