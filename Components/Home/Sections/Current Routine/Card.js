@@ -51,15 +51,16 @@ const styles = StyleSheet.create({
     },
     dateContainer: {
         flex: .4,
+        borderTopWidth: .75,
         flexDirection: "row",
         alignItems: "flex-end",
+        borderTopColor: color.HIGHLIGHT,
     },
     date: {
+        zIndex: 2,
         width: "100%",
         color: color.WHITE,
-        borderTopWidth: .75,
         textAlign: "center",
-        borderTopColor: color.HIGHLIGHT,
         textTransform: "uppercase",
     }
 })

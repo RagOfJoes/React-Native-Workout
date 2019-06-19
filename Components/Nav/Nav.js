@@ -67,12 +67,12 @@ const Nav = createBottomTabNavigator(
                 shadowColor: "#000",
                 shadowOffset: {
                     width: 0,
-                    height: -3,
+                    height: 3,
                 },
-                shadowOpacity: 0.37,
-                shadowRadius: 7.49,
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
 
-                elevation: 12,
+                elevation: 7,
             },
             tabStyle: {
                 flex: 1,

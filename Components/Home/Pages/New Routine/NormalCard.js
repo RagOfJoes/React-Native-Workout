@@ -85,7 +85,7 @@ class NormalCard extends Component {
                         <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} placeholder="Name" placeholderTextColor={color.GREY} maxLength={20} autoCapitalize="words" />
                     </View>
                     <MusclePickerMenu pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
-                </ View>
+                </View>
             </View>
         )
     }
@@ -141,10 +141,10 @@ const styles = StyleSheet.create({
             width: 0,
             height: 3,
         },
-        shadowOpacity: 0.29,
+        shadowOpacity: 0.27,
         shadowRadius: 4.65,
 
-        elevation: 7,
+        elevation: 6,
     },
     normalCardColTwo: {
         flex: .75,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
+            width: 2,
             height: 2,
         },
         shadowOpacity: 0.25,
