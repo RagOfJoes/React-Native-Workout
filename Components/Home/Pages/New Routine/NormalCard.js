@@ -23,15 +23,14 @@ class NormalCard extends Component {
     _openMusclePickerAnimation = () => {
         Animated.timing(this.musclePicker, {
             toValue: 1,
-            duration: 800,
-            easing: Easing.elastic(),
+            duration: 300,
         }).start();
     }
 
     _closeMusclePickerAnimation = () => {
         Animated.timing(this.musclePicker, {
             toValue: 0,
-            duration: 600,
+            duration: 200,
         }).start();
     }
 
@@ -75,7 +74,7 @@ class NormalCard extends Component {
 
     render() {
         return (
-            <View style={styles.normalCardContainer} >
+            <View style={styles.normalCardContainer}>
                 <View style={styles.normalCardRowOne}>
                     <View style={styles.normalCardColOne}>
                         <TouchableOpacity style={styles.exerciseMuscleButton} onPress={() => this._openMusclePickerAnimation()}>
@@ -83,7 +82,7 @@ class NormalCard extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.normalCardColTwo}>
-                        <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} placeholder="Name" placeholderTextColor={color.GREY} autoCapitalize="words"></TextInput>
+                        <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} placeholder="Name" placeholderTextColor={color.GREY} maxLength={20} autoCapitalize="words" />
                     </View>
                     <MusclePickerMenu pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
                 </ View>
@@ -150,10 +149,9 @@ const styles = StyleSheet.create({
     normalCardColTwo: {
         flex: .75,
         height: "45%",
+        alignItems: "center",
         flexDirection: "row",
-        alignContent: "center",
         borderTopRightRadius: 5,
-        justifyContent: "center",
         borderBottomRightRadius: 5,
         backgroundColor: color.TERTIARY_DARK,
 
@@ -168,8 +166,9 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     exerciseName: {
+        width: "100%",
         color: color.WHITE,
-        marginHorizontal: 25,
+        marginHorizontal: 10,
     },
 })
 
