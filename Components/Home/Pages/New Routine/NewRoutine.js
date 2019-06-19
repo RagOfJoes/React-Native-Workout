@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         flexDirection: "row",
-        paddingHorizontal: 30,
+        paddingHorizontal: 15,
         alignContent: "center",
         justifyContent: "center",
         backgroundColor: color.TERTIARY_DARK,
@@ -101,8 +101,9 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     routineNameText: {
-        alignSelf: "center",
+        width: "100%",
         color: color.WHITE,
+        alignSelf: "center",
         textAlignVertical: "center"
     },
     // End Routine Name
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     exercisesTitle: {
+        width: "100%",
         color: color.WHITE,
         textAlign: 'center'
     },
