@@ -1,5 +1,6 @@
 import React from 'react';
 import NormalCard from './NormalCard';
+import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
@@ -50,12 +51,12 @@ const styles = StyleSheet.create({
         backgroundColor: color.PRIMARY_DARK
     },
     NewRoutineContainer: {
-        width: "100%",
+        flex: 1,
         height: "100%",
         paddingVertical: 30,
         alignItems: "center",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
     },
     // Start Routine Name
     routineNameRow: {
@@ -152,4 +153,8 @@ const styles = StyleSheet.create({
     // End Exercises
 })
 
-export default NewRoutine;
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps)(NewRoutine);
