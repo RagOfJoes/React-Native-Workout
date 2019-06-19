@@ -28,11 +28,11 @@ const MusclePickerMenu = (props) => {
             <TouchableOpacity style={{ flex: 1, alignItems: "center", justifyContent: "center", }} onPress={() => pickedMuscle("Back")}>
                 <Image style={{ width: "60%", height: "60%" }} source={Back} resizeMode="contain"></Image>
             </TouchableOpacity>
-            <TouchableOpacity style={{ flex: 1, alignItems: "center", justifyContent: "center", }} onPress={() => pickedMuscle("Arms")}>
-                <Image style={{ width: "60%", height: "60%" }} source={Arms} resizeMode="contain"></Image>
-            </TouchableOpacity>
             <TouchableOpacity style={{ flex: 1, alignItems: "center", justifyContent: "center", }} onPress={() => pickedMuscle("Abs")}>
                 <Image style={{ width: "60%", height: "60%" }} source={Abs} resizeMode="contain"></Image>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ flex: 1, alignItems: "center", justifyContent: "center", }} onPress={() => pickedMuscle("Arms")}>
+                <Image style={{ width: "60%", height: "60%" }} source={Arms} resizeMode="contain"></Image>
             </TouchableOpacity>
             <TouchableOpacity style={{ flex: 1, alignItems: "center", justifyContent: "center", }} onPress={() => pickedMuscle("Legs")}>
                 <Image style={{ width: "60%", height: "40%" }} source={Legs} resizeMode="contain"></Image>
