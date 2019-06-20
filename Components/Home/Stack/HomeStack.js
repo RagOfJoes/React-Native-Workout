@@ -4,7 +4,7 @@ import { color } from '../../config/colors';
 import { fontSize } from '../../config/fontSize';
 import NewRoutine from '../Pages/New Routine/NewRoutine';
 import { createStackNavigator } from 'react-navigation';
-import { Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 const HomeStack = createStackNavigator(
     {
@@ -13,26 +13,24 @@ const HomeStack = createStackNavigator(
             navigationOptions: ({ navigation }) => ({
                 headerMode: "none",
                 headerStyle: {
-                    width: "90%",
-                    alignSelf: "center",
-                    borderBottomWidth: .75,
-                    borderBottomColor: color.HIGHLIGHT,
+                    elevation: 0,
+                    width: "100%",
+                    borderBottomWidth: 0,
                     backgroundColor: color.PRIMARY_DARK
                 },
-                headerLeft: <Text style={[fontSize.PAGE_TITLE, {
-                    color: color.WHITE,
-                    marginRight: 'auto',
-                    alignSelf: 'center',
-                }]}>WORKOUTS</Text>,
-                headerRight: (
-                    <TouchableOpacity style={{
-                        width: 30,
-                        height: 30,
-                        alignSelf: 'center'
-                    }} onPress={() => navigation.navigate("NewRoutine")}>
-                        <Image style={{ width: 30, height: 30 }} resizeMode="contain" source={require("../../../assets/addWorkout.png")} />
-                    </TouchableOpacity>
-                )
+                headerTitle: (
+                    <View style={{ flex: 1, width: "100%", height: "100%", flexDirection: "row", alignContent: "center", justifyContent: "center" }}>
+                        <View style={{ width: "90%", height: "100%", flexDirection: "row", borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
+                            <Text style={[fontSize.PAGE_TITLE, { flex: 1, color: color.WHITE, marginRight: "auto", alignSelf: 'center', }]}>WORKOUTS</Text>
+                            <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 50, alignSelf: "center" }} onPress={() => navigation.navigate("NewRoutine")}>
+                                <Image style={{ width: "100%", height: "100%" }} source={require("../../../assets/addWorkout.png")} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                ),
+                // headerRight: (
+
+                // )
             })
         },
         NewRoutine: {
