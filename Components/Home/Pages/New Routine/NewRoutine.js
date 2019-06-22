@@ -1,7 +1,7 @@
 import React from 'react';
-import NormalCard from './NormalCard';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
+import NormalCard from './Exercises/NormalCard';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
 
