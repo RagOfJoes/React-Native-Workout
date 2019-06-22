@@ -24,13 +24,13 @@ class CurrentRoutine extends Component {
                     </View>
 
                     <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isScrolled(nativeEvent.contentOffset); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
+                        <Card date="Monday" workout="push" />
+                        <Card date="Tuesday" workout="pull"/>
+                        <Card date="Wednesday" workout="legs"/>
+                        <Card date="Thursday" workout="break"/>
+                        <Card date="Friday" workout="push"/>
+                        <Card date="Saturday" workout="pull"/>
+                        <Card date="Sunday" workout="legs"/>
                     </ScrollView>
                 </View>
             </View>
