@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import Menu from '../../../../Views/Menu';
 import Muscle from '../../../../Views/Muscle';
 import { color } from '../../../../config/colors';
-import MusclePickerMenu from './MusclePickerMenu';
 import { fontSize } from '../../../../config/fontSize';
 import { Image, View, Animated, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native';
 
@@ -51,7 +51,7 @@ class NormalCard extends Component {
                     <View style={styles.normalCardColTwo}>
                         <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} placeholder="Name" placeholderTextColor={color.GREY} maxLength={20} autoCapitalize="words" />
                     </View>
-                    <MusclePickerMenu pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
+                    <Menu action="Muscles" pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
                 </View>
             </View>
         )
