@@ -4,15 +4,14 @@ import { fontSize } from '../../../config/fontSize';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 // TODO: Check if date is today if so then change color to indicate as such
-const Card = (props) => {
-    // const { date, routineName } = props;
+const Card = ({ workout, date }) => {
     return (
         <TouchableOpacity style={styles.cardContainer}>
             <View style={styles.routineContainer}>
-                <Text style={[fontSize.CARD_CONTENT, styles.routineName]} numberOfLines={3}>push</Text>
+                <Text style={[fontSize.CARD_CONTENT, styles.routineName]} numberOfLines={3}>{workout}</Text>
             </View>
             <View style={styles.dateContainer}>
-                <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.date]}>monday</Text>
+                <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.date]}>{date}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -53,12 +52,12 @@ const styles = StyleSheet.create({
         flex: .4,
         borderTopWidth: .75,
         flexDirection: "row",
-        alignItems: "flex-end",
         borderTopColor: color.HIGHLIGHT,
     },
     date: {
         zIndex: 2,
         width: "100%",
+        alignSelf: "center",
         color: color.WHITE,
         textAlign: "center",
         textTransform: "uppercase",
