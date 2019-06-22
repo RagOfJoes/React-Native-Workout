@@ -1,9 +1,9 @@
-import Muscle from './Muscle';
+import Muscle from '../../../Views/Muscle';
 import React, { Component } from 'react';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Dimensions, StyleSheet } from 'react-native';
 
 // TODO: Fetch current routine and the day's planned workout
 // 
@@ -54,7 +54,7 @@ class NextWorkout extends Component {
                                 style={styles.muscleGroup}
                                 keyExtractor={this._keyExtractor}
                                 contentContainerStyle={{ width: "100%", height: "100%", justifyContent: "center", alignContent: "center", padding: 10 }}
-                                renderItem={({ item, index }) => { return (<Muscle key={index} muscleName={item} />) }}
+                                renderItem={({ item, index }) => { return (<Muscle key={index} containerStyle={styles.muscleContainer} muscleName={item} />) }}
                             />
                             {/* End Muscle Groups */}
                         </View>
@@ -122,6 +122,25 @@ const styles = StyleSheet.create({
     // End Title
 
     // Start Muscle Group
+    muscleContainer: {
+        flex: 1,
+        margin: 2,
+        borderRadius: 5,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: color.TERTIARY_DARK,
+        height: Dimensions.get("screen").width / 5.75, // approximate a square
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
     muscleGroup: {
         flex: 1,
         width: "100%",
