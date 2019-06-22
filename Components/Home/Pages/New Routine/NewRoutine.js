@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
-import NormalCard from './Exercises/NormalCard';
+import ExerciseCard from './Exercises/ExerciseCard';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
 
@@ -36,7 +36,7 @@ const NewRoutine = (props) => {
                         <Text style={[fontSize.SECTION_TITLE, styles.exercisesTitle]}>EXERCISES</Text>
                     </View>
                     <View style={styles.exercisesCardCol}>
-                        <NormalCard />
+                        <ExerciseCard />
                     </View>
                 </View>
             </View>

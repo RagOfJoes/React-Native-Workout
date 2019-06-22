@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import OtherRoutinesCard from './OtherRoutinesCard';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
@@ -16,10 +16,10 @@ const OtherRoutines = (props) => {
                 </View>
 
                 <View style={styles.otherRoutineCardsRow}>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    <OtherRoutinesCard />
+                    <OtherRoutinesCard />
+                    <OtherRoutinesCard />
+                    <OtherRoutinesCard />
                 </View>
             </View>
         </View>

@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import Card from '../../../../Views/Card';
 import Menu from '../../../../Views/Menu';
 import Muscle from '../../../../Views/Muscle';
 import { color } from '../../../../config/colors';
 import { fontSize } from '../../../../config/fontSize';
-import { Image, View, Animated, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native';
+import { View, Animated, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native';
 
-class NormalCard extends Component {
+class ExerciseCard extends Component {
     state = { // local state
         pickedMuscle: ""
     }
@@ -41,45 +42,25 @@ class NormalCard extends Component {
 
     render() {
         return (
-            <View style={styles.normalCardContainer}>
-                <View style={styles.normalCardRowOne}>
-                    <View style={styles.normalCardColOne}>
+            <Card addContStyle={{ paddingVertical: 15, paddingHorizontal: 25 }}>
+                <View style={styles.exerciseCardRowOne}>
+                    <View style={styles.exerciseCardColOne}>
                         {
                             this.renderPickedMuscle()
                         }
                     </View>
-                    <View style={styles.normalCardColTwo}>
+                    <View style={styles.exerciseCardColTwo}>
                         <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} placeholder="Name" placeholderTextColor={color.GREY} maxLength={20} autoCapitalize="words" />
                     </View>
                     <Menu action="Muscles" pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
                 </View>
-            </View>
+            </Card>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    normalCardContainer: {
-        flex: 1,
-        width: "90%",
-        height: "100%",
-        borderRadius: 5,
-        paddingVertical: 15,
-        paddingHorizontal: 25,
-        flexDirection: "column",
-        backgroundColor: color.SECONDARY_DARK,
-
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-
-        elevation: 7,
-    },
-    normalCardRowOne: {
+    exerciseCardRowOne: {
         flex: 1,
         height: "100%",
         flexDirection: "row",
@@ -87,7 +68,7 @@ const styles = StyleSheet.create({
         alignContent: "center",
         justifyContent: "center",
     },
-    normalCardColOne: {
+    exerciseCardColOne: {
         flex: .25,
         height: "100%",
         alignItems: "center",
@@ -113,7 +94,7 @@ const styles = StyleSheet.create({
 
         elevation: 6,
     },
-    normalCardColTwo: {
+    exerciseCardColTwo: {
         flex: .75,
         height: "45%",
         alignItems: "center",
@@ -143,4 +124,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps)(NormalCard);
+export default connect(mapStateToProps)(ExerciseCard);

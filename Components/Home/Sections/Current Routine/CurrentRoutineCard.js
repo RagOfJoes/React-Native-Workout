@@ -1,19 +1,20 @@
 import React from 'react';
+import Card from '../../../Views/Card';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 // TODO: Check if date is today if so then change color to indicate as such
-const Card = ({ workout, date }) => {
+const CurrentRoutineCard = ({ workout, date }) => {
     return (
-        <TouchableOpacity style={styles.cardContainer}>
+        <Card containerStyle={styles.cardContainer} isTouchable>
             <View style={styles.routineContainer}>
                 <Text style={[fontSize.CARD_CONTENT, styles.routineName]} numberOfLines={3}>{workout}</Text>
             </View>
             <View style={styles.dateContainer}>
                 <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.date]}>{date}</Text>
             </View>
-        </TouchableOpacity>
+        </Card>
     )
 }
 
@@ -64,4 +65,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Card;
+export default CurrentRoutineCard;

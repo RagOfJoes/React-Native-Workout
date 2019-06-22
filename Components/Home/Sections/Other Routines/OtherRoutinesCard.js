@@ -1,13 +1,14 @@
 import React from 'react';
+import Card from '../../../Views/Card';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import { TouchableOpacity, Text, Dimensions, StyleSheet } from 'react-native';
 
-const Card = (props) => {
+const OtherRoutinesCard = (props) => {
     return (
-        <TouchableOpacity style={styles.otherRoutinesCardContainer}>
+        <Card containerStyle={styles.otherRoutinesCardContainer} isTouchable>
             <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutinesCardText]} numberOfLines={3}>stronglift 5x5</Text>
-        </TouchableOpacity>
+        </Card>
     )
 }
 
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Card;
+export default OtherRoutinesCard;
