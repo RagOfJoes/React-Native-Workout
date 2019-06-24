@@ -9,6 +9,7 @@ import { View, Animated, TouchableOpacity, Dimensions, TextInput, StyleSheet } f
 
 class ExerciseCard extends Component {
     state = { // local state
+        isOpen: true,
         pickedMuscle: ""
     }
     musclePicker = new Animated.Value(1);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
+import WorkoutCard from './Workouts/WorkoutCard';
 import ExerciseCard from './Exercises/ExerciseCard';
 import { fontSize } from '../../../config/fontSize';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
@@ -31,12 +32,12 @@ const NewRoutine = (props) => {
                         </TextInput>
                     </View>
                 </View>
-                <View style={styles.exercisesRow}>
-                    <View style={styles.exercisesTitleCol}>
-                        <Text style={[fontSize.SECTION_TITLE, styles.exercisesTitle]}>EXERCISES</Text>
+                <View style={styles.workoutRow}>
+                    <View style={styles.workoutTitleCol}>
+                        <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
                     </View>
-                    <View style={styles.exercisesCardCol}>
-                        <ExerciseCard />
+                    <View style={styles.workoutCardCol}>
+                        <WorkoutCard />
                     </View>
                 </View>
             </View>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     // End Routine Name
 
     // Start Exercises
-    exercisesRow: {
+    workoutRow: {
         flex: 1,
         width: "90%",
         marginTop: 30,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
 
         elevation: 7,
     },
-    exercisesTitleCol: {
+    workoutTitleCol: {
         flex: .25,
         height: 20,
         width: "100%",
@@ -138,16 +139,16 @@ const styles = StyleSheet.create({
         alignContent: "center",
         justifyContent: "center",
     },
-    exercisesTitle: {
+    workoutTitle: {
         width: "100%",
         color: color.WHITE,
         textAlign: 'center'
     },
-    exercisesCardCol: {
+    workoutCardCol: {
         flex: 1,
         marginTop: 10,
         width: "100%",
-        height: "100%",
+        overflow: "hidden",
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "space-evenly",
