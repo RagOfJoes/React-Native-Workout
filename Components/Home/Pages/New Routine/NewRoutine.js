@@ -4,7 +4,40 @@ import { color } from '../../../config/colors';
 import WorkoutCard from './Workouts/WorkoutCard';
 import ExerciseCard from './Exercises/ExerciseCard';
 import { fontSize } from '../../../config/fontSize';
-import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, SectionList, ScrollView, TextInput, StyleSheet } from 'react-native';
+
+const data = [
+    {
+        Name: "Push",
+        Exercises: [
+            {
+                Type: "Chest",
+                Name: "Bench Press"
+            }
+        ]
+    }, {
+        Name: "Pull",
+        Exercises: [
+            {
+                Type: "Back",
+                Name: "Pullups",
+            }
+        ]
+    },
+    {
+        Name: "Legs",
+        Exercises: [
+            {
+                Type: "Legs",
+                Name: "Squats"
+            }
+        ]
+    }
+];
+
+const keyExtractor = (item, index) => {
+    return item.Name;
+}
 
 const NewRoutine = (props) => {
     return (
@@ -32,14 +65,25 @@ const NewRoutine = (props) => {
                         </TextInput>
                     </View>
                 </View>
+                {/* Use SectionList instead of nesting Flatlists */}
                 <View style={styles.workoutRow}>
                     <View style={styles.workoutTitleCol}>
                         <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
                     </View>
-                    <View style={styles.workoutCardCol}>
-                        <WorkoutCard />
-                    </View>
+                    <FlatList
+                        data={data}
+                        numColumns="1"
+                        keyExtractor={keyExtractor}
+                        style={{ flex: 1, width: "100%" }}
+                        contentContainerStyle={{ width: "100%", height: "100%", justifyContent: "space-evenly" }}
+                        renderItem={({ item, index }) => <WorkoutCard key={item.Name} workoutName={item.Name} exercises={item.Exercises} isEditing={true} />}
+                    />
                 </View>
+            </View>
+            <View style={styles.saveRow}>
+                <TouchableOpacity style={styles.saveCol}>
+                    <Image style={{ width: 40, height: 40 }} source={require('../../../../assets/Save.png')} resizeMode="contain" />
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -152,8 +196,30 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "space-evenly",
-    }
+        // backgroundColor: "red"
+    },
     // End Exercises
+    saveRow: {
+        width: "90%",
+        alignSelf: "center",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+    },
+    saveCol: {
+        width: 40,
+        height: 40,
+        borderRadius: 50,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+
+        elevation: 7,
+    }
 })
 
 const mapStateToProps = (state) => {
