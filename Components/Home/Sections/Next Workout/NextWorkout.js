@@ -23,6 +23,7 @@ const formatData = (data, numColumns) => {
     return data;
 };
 
+// TODO: Make this card a general component
 class NextWorkout extends Component {
     _keyExtractor = (index) => {
         return index
@@ -53,7 +54,7 @@ class NextWorkout extends Component {
                                 data={formatData(data, 3)}
                                 style={styles.muscleGroup}
                                 keyExtractor={this._keyExtractor}
-                                contentContainerStyle={{ width: "100%", height: "100%", justifyContent: "center", alignContent: "center", padding: 10 }}
+                                contentContainerStyle={{ justifyContent: "center", alignContent: "center", padding: 10 }}
                                 renderItem={({ item, index }) => { return (<Muscle key={index} containerStyle={styles.muscleContainer} muscleName={item} />) }}
                             />
                             {/* End Muscle Groups */}
@@ -68,7 +69,7 @@ class NextWorkout extends Component {
 
 const styles = StyleSheet.create({
     nextWorkoutContainerStyle: {
-        height: 170,
+        height: "70%",
         width: '100%',
         alignItems: "center"
     },
@@ -109,7 +110,6 @@ const styles = StyleSheet.create({
         backgroundColor: color.TERTIARY_DARK,
     },
     title: {
-        marginBottom: -5,
         color: color.GREY,
         textAlign: "center",
         textTransform: "uppercase",
