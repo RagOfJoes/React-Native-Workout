@@ -2,11 +2,38 @@ import React, { Component } from 'react';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import CurrentRoutineCard from './CurrentRoutineCard';
-// import RoutineBackArrow from '../../../../assets/RoutineBackArrow.png';
-// import RoutineNextArrow from '../../../../assets/RoutineNextArrow.png';
-import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet } from 'react-native';
 
-
+const data = [
+    {
+        Date: "Monday",
+        Workout: "Push"
+    },
+    {
+        Date: "Tuesday",
+        Workout: "Pull"
+    },
+    {
+        Date: "Wednesday",
+        Workout: "Legs"
+    },
+    {
+        Date: "Thursday",
+        Workout: "Break"
+    },
+    {
+        Date: "Friday",
+        Workout: "Push"
+    },
+    {
+        Date: "Saturday",
+        Workout: "Pull"
+    },
+    {
+        Date: "Sunday",
+        Workout: "Legs"
+    },
+]
 
 class CurrentRoutine extends Component {
     isScrolled = (contentOffset) => {
@@ -15,7 +42,7 @@ class CurrentRoutine extends Component {
 
     render() {
         return (
-            <View style={{ flex: .5, overflow: 'hidden', justifyContent: "center" }}>
+            <View style={{ flex: 1, overflow: 'hidden', justifyContent: "center" }}>
                 <View style={styles.currentRoutineContainer}>
                     <View style={{ borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
                         <Text style={[fontSize.SECTION_TITLE, styles.currentRoutineText]}>
@@ -23,15 +50,15 @@ class CurrentRoutine extends Component {
                         </Text>
                     </View>
 
-                    <ScrollView ref={(ref) => this._scrollRoutine = ref} onScroll={({ nativeEvent }) => { this.isScrolled(nativeEvent.contentOffset); }} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={1}>
-                        <CurrentRoutineCard date="Monday" workout="push" />
-                        <CurrentRoutineCard date="Tuesday" workout="pull"/>
-                        <CurrentRoutineCard date="Wednesday" workout="legs"/>
-                        <CurrentRoutineCard date="Thursday" workout="break"/>
-                        <CurrentRoutineCard date="Friday" workout="push"/>
-                        <CurrentRoutineCard date="Saturday" workout="pull"/>
-                        <CurrentRoutineCard date="Sunday" workout="legs"/>
-                    </ScrollView>
+                    <FlatList
+                        data={data}
+                        numColumns="1"
+                        horizontal={true}
+                        scrollEnabled={true}
+                        style={{ flex: 1, width: "100%" }}
+                        keyExtractor={(item, index) => item.Date}
+                        renderItem={({ item, index }) => <CurrentRoutineCard date={item.Date} workout={item.Workout} />}
+                    />
                 </View>
             </View>
         )
