@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         maxHeight: 130,
         borderRadius: 5,
         marginVertical: 5,
-        marginHorizontal: 4,
+        marginHorizontal: 3,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: color.SECONDARY_DARK,
