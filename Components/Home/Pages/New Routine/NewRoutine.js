@@ -2,9 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
 import WorkoutCard from './Workouts/WorkoutCard';
-import ExerciseCard from './Exercises/ExerciseCard';
 import { fontSize } from '../../../config/fontSize';
-import { View, Text, Image, TouchableOpacity, FlatList, SectionList, ScrollView, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, ScrollView, TextInput, StyleSheet } from 'react-native';
+
+const templateData = {
+    Name: "",
+    Exercises: []
+}
 
 const data = [
     {
@@ -13,31 +17,52 @@ const data = [
             {
                 Type: "Chest",
                 Name: "Bench Press"
-            }
-        ]
-    }, {
-        Name: "Pull",
-        Exercises: [
+            },
             {
-                Type: "Back",
-                Name: "Pullups",
+                Type: "Shoulders",
+                Name: "Military Press"
+            },
+            {
+                Type: "Chest",
+                Name: "Incline Bench Press"
+            },
+            {
+                Type: "Chest",
+                Name: "Landmine Press"
+            },
+            {
+                Type: "Chest",
+                Name: "Dips"
+            },
+            {
+                Type: "Chest",
+                Name: "Chest Flyes"
+            },
+            {
+                Type: "Arms",
+                Name: "Tricep Pull Downs"
             }
         ]
     },
-    {
-        Name: "Legs",
-        Exercises: [
-            {
-                Type: "Legs",
-                Name: "Squats"
-            }
-        ]
-    }
+    // {
+    //     Name: "Pull",
+    //     Exercises: [
+    //         {
+    //             Type: "Back",
+    //             Name: "Pullups",
+    //         }
+    //     ]
+    // },
+    // {
+    //     Name: "Legs",
+    //     Exercises: [
+    //         {
+    //             Type: "Legs",
+    //             Name: "Squats"
+    //         }
+    //     ]
+    // }
 ];
-
-const keyExtractor = (item, index) => {
-    return item.Name;
-}
 
 const NewRoutine = (props) => {
     return (
@@ -57,10 +82,10 @@ const NewRoutine = (props) => {
                     <View style={styles.routineNameCol}>
                         <TextInput
                             maxLength={60}
+                            multiline={true}
                             numberOfLines={2}
                             placeholder="Goals(Optional) "
                             placeholderTextColor={color.GREY}
-                            multiline={true}
                             style={[styles.routineNameText, fontSize.SECTION_TITLE]}>
                         </TextInput>
                     </View>
@@ -73,17 +98,26 @@ const NewRoutine = (props) => {
                     <FlatList
                         data={data}
                         numColumns="1"
-                        keyExtractor={keyExtractor}
+                        extraData={data}
                         style={{ flex: 1, width: "100%" }}
-                        contentContainerStyle={{ width: "100%", height: "100%", justifyContent: "space-evenly" }}
-                        renderItem={({ item, index }) => <WorkoutCard key={item.Name} workoutName={item.Name} exercises={item.Exercises} isEditing={true} />}
+                        keyExtractor={(item, index) => item.Name}
+                        renderItem={({ item, index }) =>
+                            <WorkoutCard
+                                key={index}
+                                isEditing={true}
+                                workoutName={item.Name}
+                                exercises={item.Exercises}
+                                _pressAdd={() => { data.push(templateData); console.log(data) }}
+                            />
+                        }
                     />
                 </View>
-            </View>
-            <View style={styles.saveRow}>
+                {/* <View style={styles.saveRow}> */}
                 <TouchableOpacity style={styles.saveCol}>
-                    <Image style={{ width: 40, height: 40 }} source={require('../../../../assets/Save.png')} resizeMode="contain" />
+                    {/* <Image style={{ width: 40, height: 40 }} source={require('../../../../assets/Save.png')} resizeMode="contain" /> */}
+                    <Text style={{ fontSize: 35, color: color.WHITE }}>✓</Text>
                 </TouchableOpacity>
+                {/* </View> */}
             </View>
         </ScrollView>
     )
@@ -206,9 +240,15 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     saveCol: {
-        width: 40,
-        height: 40,
+        width: 56,
+        right: 30,
+        bottom: 0,
+        height: 56,
         borderRadius: 50,
+        position: "absolute",
+        alignItems: "center",
+        alignContent: "center",
+        justifyContent: "center",
 
         shadowColor: "#000",
         shadowOffset: {
@@ -219,6 +259,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
 
         elevation: 7,
+        backgroundColor: color.GREEN
     }
 })
 
