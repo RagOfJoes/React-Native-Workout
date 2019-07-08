@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../../../Views/Card';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
-import { TouchableOpacity, Text, Dimensions, StyleSheet } from 'react-native';
+import { Text, Dimensions, StyleSheet } from 'react-native';
 
 const OtherRoutinesCard = (props) => {
     return (
@@ -16,8 +16,9 @@ const styles = StyleSheet.create({
     otherRoutinesCardContainer: {
         flex: 1,
         margin: 5,
-        alignContent: "center",
+        paddingHorizontal: 5,
         alignItems: "center",
+        alignContent: "center",
         justifyContent: "center",
         backgroundColor: color.TERTIARY_DARK,
         height: Dimensions.get("window").width / 5,
