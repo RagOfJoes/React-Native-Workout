@@ -1,49 +1,24 @@
 import React from 'react';
 import { View } from 'react-native';
-import WorkoutCard from '../../Pages/New Routine/Workouts/WorkoutCard';
-
-const data = [
-    {
-        Name: "Push",
-        Exercises: [
-            {
-                Type: "Chest",
-                Name: "Bench Press"
-            },
-            {
-                Type: "Shoulders",
-                Name: "Military Press"
-            },
-            // {
-            //     Type: "Chest",
-            //     Name: "Incline Bench Press"
-            // },
-            // {
-            //     Type: "Chest",
-            //     Name: "Landmine Press"
-            // },
-            // {
-            //     Type: "Chest",
-            //     Name: "Dips"
-            // },
-            // {
-            //     Type: "Chest",
-            //     Name: "Chest Flyes"
-            // },
-            // {
-            //     Type: "Arms",
-            //     Name: "Tricep Extensions"
-            // }
-        ]
-    }
-];
+import { connect } from 'react-redux';
+import WorkoutCard from '../../../Views/WorkoutCard/WorkoutCard';
 
 const NextWorkout = (props) => {
+    const { Workouts, WorkoutNames } = props.routines["Push Pull Legs"];
+    const { ExercisesNames } = Workouts[WorkoutNames[0]];
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
-            <WorkoutCard workoutName={data[0].Name} exercises={data[0].Exercises} isEditing={false} />
+            <WorkoutCard
+                exercises={ExercisesNames}
+                workoutName={WorkoutNames[0]}
+                currentRoutine="Push Pull Legs"
+            />
         </View>
     )
 }
 
-export default NextWorkout;
+const mapStateToProps = (state) => {
+    return state.Routines;
+}
+
+export default connect(mapStateToProps)(NextWorkout);
