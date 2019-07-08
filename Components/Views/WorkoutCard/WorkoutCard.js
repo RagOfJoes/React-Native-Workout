@@ -1,9 +1,10 @@
 import React from 'react';
+import Muscle from '../Muscle';
 import { connect } from 'react-redux';
 import styles from './WorkoutCardStyle';
-import Muscle from '../Muscle';
-import { View, Text, FlatList } from 'react-native';
 import { fontSize } from '../../config/fontSize';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { color } from '../../config/colors';
 
 // Check if Objects are empty
 const isEmpty = (routines, currentRoutine, workoutName, item, type) => {
@@ -23,9 +24,6 @@ const isEmpty = (routines, currentRoutine, workoutName, item, type) => {
 
 // Custom RenderItem Function
 const renderItem = ({ routines, currentRoutine, workoutName }, item, index) => {
-    const exerciseLength = isEmpty(routines, currentRoutine, workoutName, item, "Exercise") === false ?
-        routines[currentRoutine].Workouts[workoutName].ExercisesNames.length : 0;
-
     // Get MuscleName if UNDEFINED then return Empty
     const muscleName = !isEmpty(routines, currentRoutine, workoutName, item, "Muscle") ?
         routines[currentRoutine].Workouts[workoutName].Exercises[item].Type
@@ -44,6 +42,14 @@ const Empty = () => {
         <View style={styles.emptyContainer}>
             <Text style={[fontSize.CARD_TITLE, styles.emptyContent]}>No Exercises to show</Text>
         </View>
+    )
+}
+
+const Start = () => {
+    return (
+        <TouchableOpacity style={styles.startContainer}>
+            <Text style={[fontSize.CARD_TITLE, styles.startText]}>START</Text>
+        </TouchableOpacity>
     )
 }
 
@@ -69,6 +75,7 @@ class WorkoutCard extends React.Component {
                         <View style={styles.workoutCardTitle}>
                             <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={1}>Next Workout</Text>
                             <Text style={[fontSize.CARD_CONTENT, styles.workoutName]}>{workoutName}</Text>
+                            <Start />
                         </View>
                         {/* End Workout Title */}
 

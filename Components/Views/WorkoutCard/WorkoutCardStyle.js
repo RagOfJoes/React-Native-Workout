@@ -56,6 +56,23 @@ const styles = StyleSheet.create({
     },
     // End Title
 
+    // Start Start Button
+    startContainer: {
+        bottom: 0,
+        width: "100%",
+        height: "18%",
+        position: "absolute",
+        justifyContent: "center",
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        backgroundColor: color.HIGHLIGHT,
+    },
+    startText: {
+        textAlign: "center",
+        color: color.TERTIARY_DARK
+    },
+    // End Start Button
+
     // Start Empty Component
     emptyContainer: {
         flex: 1,
