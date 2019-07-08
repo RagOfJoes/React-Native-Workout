@@ -1,126 +1,105 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
-import WorkoutCard from './Workouts/WorkoutCard';
+import { withNavigation } from 'react-navigation';
 import { fontSize } from '../../../config/fontSize';
-import { View, Text, Image, TouchableOpacity, FlatList, ScrollView, TextInput, StyleSheet } from 'react-native';
+import { DeleteAction, RightAction } from './Actions/Actions';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { addWorkout, delWorkout } from '../../../../Redux/Actions/routineAction';
+import { View, Text, TouchableOpacity, FlatList, TextInput, StyleSheet } from 'react-native';
 
-const templateData = {
-    Name: "",
-    Exercises: []
+const RoutineHeader = () => {
+    return (
+        <View style={styles.routineNameRow}>
+            <View style={styles.routineNameCol}>
+                <TextInput
+                    maxLength={30}
+                    numberOfLines={1}
+                    placeholder="Routine Name"
+                    placeholderTextColor={color.GREY}
+                    style={[styles.routineNameText, fontSize.SECTION_TITLE]}
+                >
+                </TextInput>
+            </View>
+            <View style={styles.routineNameCol}>
+                <TextInput
+                    maxLength={60}
+                    multiline={true}
+                    numberOfLines={2}
+                    placeholder="Goals(Optional)"
+                    placeholderTextColor={color.GREY}
+                    style={[styles.routineNameText, fontSize.SECTION_TITLE]}>
+                </TextInput>
+            </View>
+        </View>
+    )
 }
 
-const data = [
-    {
-        Name: "Push",
-        Exercises: [
-            {
-                Type: "Chest",
-                Name: "Bench Press"
-            },
-            {
-                Type: "Shoulders",
-                Name: "Military Press"
-            },
-            {
-                Type: "Chest",
-                Name: "Incline Bench Press"
-            },
-            {
-                Type: "Chest",
-                Name: "Landmine Press"
-            },
-            {
-                Type: "Chest",
-                Name: "Dips"
-            },
-            {
-                Type: "Chest",
-                Name: "Chest Flyes"
-            },
-            {
-                Type: "Arms",
-                Name: "Tricep Pull Downs"
-            }
-        ]
-    },
-    // {
-    //     Name: "Pull",
-    //     Exercises: [
-    //         {
-    //             Type: "Back",
-    //             Name: "Pullups",
-    //         }
-    //     ]
-    // },
-    // {
-    //     Name: "Legs",
-    //     Exercises: [
-    //         {
-    //             Type: "Legs",
-    //             Name: "Squats"
-    //         }
-    //     ]
-    // }
-];
+class NewRoutine extends React.PureComponent {
+    // Custom Render Function
+    renderItem = (currentRoutine, { WorkoutNames }, item) => {
+        const isDeletable = WorkoutNames.length > 1;
 
-const NewRoutine = (props) => {
-    return (
-        <ScrollView style={styles.NewRoutineWrapper} scrollEventThrottle={1}>
-            <View style={styles.NewRoutineContainer}>
-                <View style={styles.routineNameRow}>
-                    <View style={styles.routineNameCol}>
-                        <TextInput
-                            maxLength={30}
-                            numberOfLines={1}
-                            placeholder="Routine Name"
-                            placeholderTextColor={color.GREY}
-                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}
-                        >
-                        </TextInput>
-                    </View>
-                    <View style={styles.routineNameCol}>
-                        <TextInput
-                            maxLength={60}
-                            multiline={true}
-                            numberOfLines={2}
-                            placeholder="Goals(Optional) "
-                            placeholderTextColor={color.GREY}
-                            style={[styles.routineNameText, fontSize.SECTION_TITLE]}>
-                        </TextInput>
-                    </View>
-                </View>
-                {/* Use SectionList instead of nesting Flatlists */}
-                <View style={styles.workoutRow}>
-                    <View style={styles.workoutTitleCol}>
-                        <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
-                    </View>
-                    <FlatList
-                        data={data}
-                        numColumns="1"
-                        extraData={data}
-                        style={{ flex: 1, width: "100%" }}
-                        keyExtractor={(item, index) => item.Name}
-                        renderItem={({ item, index }) =>
-                            <WorkoutCard
-                                key={index}
-                                isEditing={true}
-                                workoutName={item.Name}
-                                exercises={item.Exercises}
-                                _pressAdd={() => { data.push(templateData); console.log(data) }}
-                            />
-                        }
+        return (
+            <Swipeable overshootLeft={false} overshootRight={false} containerStyle={{ flex: 1, marginBottom: 10, overflow: "visible" }}
+                renderLeftActions={(progress, dragX) =>
+                    <DeleteAction
+                        dragX={dragX}
+                        progress={progress}
+                        _pressDel={() => isDeletable ? this.props.dispatch(delWorkout(currentRoutine, item)) : null}
                     />
+                }
+                renderRightActions={(progress, dragX) =>
+                    <RightAction
+                        dragX={dragX}
+                        progress={progress}
+                        _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine))}
+                    />
+                }
+            >
+                <View style={styles.workoutCardCol}>
+                    <TextInput maxLength={60} defaultValue={item} style={[styles.workoutCardText, fontSize.SECTION_TITLE]} />
                 </View>
-                {/* <View style={styles.saveRow}> */}
-                <TouchableOpacity style={styles.saveCol}>
-                    {/* <Image style={{ width: 40, height: 40 }} source={require('../../../../assets/Save.png')} resizeMode="contain" /> */}
-                    <Text style={{ fontSize: 35, color: color.WHITE }}>✓</Text>
-                </TouchableOpacity>
-                {/* </View> */}
+            </Swipeable>
+        )
+    }
+
+    render() {
+        const { props } = this;
+        const { routines, currentRoutine } = props;
+        const { WorkoutNames } = routines[currentRoutine];
+
+        return (
+            <View style={styles.NewRoutineWrapper} >
+                <View style={styles.NewRoutineContainer}>
+                    <RoutineHeader />
+                    {/* Start Workouts Card */}
+                    <View style={styles.workoutRow}>
+                        <View style={styles.workoutTitleCol}>
+                            <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
+                        </View>
+                        <FlatList
+                            numColumns="1"
+                            data={WorkoutNames}
+                            overScrollMode="never"
+                            extraData={WorkoutNames}
+                            style={{ flex: 1, width: "100%" }}
+                            keyExtractor={(item, index) => `${currentRoutine}-${item}-${index}`}
+                            renderItem={({ item, index }) =>
+                                this.renderItem(currentRoutine, routines[currentRoutine], item, index)
+                            }
+                        />
+                    </View>
+                    {/* End Workouts Card */}
+                    <View style={styles.saveRow}>
+                        <TouchableOpacity style={styles.saveCol}>
+                            <Text style={{ fontSize: 35, color: color.WHITE }}>✓</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
-        </ScrollView>
-    )
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -139,7 +118,7 @@ const styles = StyleSheet.create({
     },
     // Start Routine Name
     routineNameRow: {
-        flex: 1,
+        flex: .4,
         height: 115,
         width: "90%",
         borderRadius: 5,
@@ -195,7 +174,6 @@ const styles = StyleSheet.create({
         height: "100%",
         borderRadius: 5,
         paddingVertical: 15,
-        alignItems: "center",
         flexDirection: "column",
         backgroundColor: color.SECONDARY_DARK,
 
@@ -210,9 +188,10 @@ const styles = StyleSheet.create({
         elevation: 7,
     },
     workoutTitleCol: {
-        flex: .25,
+        flex: .1,
         height: 20,
         width: "100%",
+        alignItems: "center",
         flexDirection: "row",
         alignContent: "center",
         justifyContent: "center",
@@ -223,29 +202,48 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     workoutCardCol: {
-        flex: 1,
-        marginTop: 10,
-        width: "100%",
-        overflow: "hidden",
+        width: "90%",
+        height: "100%",
+        borderRadius: 5,
+        paddingVertical: 20,
+        alignSelf: "center",
+        flexDirection: "row",
         alignItems: "center",
-        flexDirection: "column",
-        justifyContent: "space-evenly",
-        // backgroundColor: "red"
+        justifyContent: "center",
+
+        backgroundColor: color.SECONDARY_DARK,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+
+        elevation: 7,
+    },
+    workoutCardText: {
+        height: 40,
+        width: "90%",
+        borderRadius: 5,
+        color: color.WHITE,
+        paddingHorizontal: 10,
+        textAlignVertical: "center",
+        backgroundColor: color.TERTIARY_DARK
     },
     // End Exercises
     saveRow: {
         width: "90%",
+        marginTop: 15,
         alignSelf: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
     },
     saveCol: {
         width: 56,
-        right: 30,
-        bottom: 0,
         height: 56,
         borderRadius: 50,
-        position: "absolute",
         alignItems: "center",
         alignContent: "center",
         justifyContent: "center",
@@ -264,7 +262,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-    return state;
+    return state.Routines;
 }
 
-export default connect(mapStateToProps)(NewRoutine);
+export default connect(mapStateToProps)(withNavigation(NewRoutine));
