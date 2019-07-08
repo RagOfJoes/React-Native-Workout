@@ -3,15 +3,14 @@ import Home from '../Home';
 import { color } from '../../config/colors';
 import { fontSize } from '../../config/fontSize';
 import NewRoutine from '../Pages/New Routine/NewRoutine';
-import { createStackNavigator } from 'react-navigation';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { createStackNavigator, HeaderBackButton } from 'react-navigation';
+import { View, Text, Image, Button, TouchableOpacity, Easing } from 'react-native';
 
 const HomeStack = createStackNavigator(
     {
         Home: {
             screen: Home,
             navigationOptions: ({ navigation }) => ({
-                headerMode: "none",
                 headerStyle: {
                     elevation: 0,
                     width: "100%",
@@ -28,20 +27,24 @@ const HomeStack = createStackNavigator(
                         </View>
                     </View>
                 ),
-                // headerRight: (
-
-                // )
             })
         },
         NewRoutine: {
             screen: NewRoutine,
-            navigationOptions: {
+            navigationOptions: ({ navigation }) => ({
                 title: "NEW ROUTINE",
-                headerMode: "none",
                 headerStyle: {
                     borderBottomWidth: 0,
                     backgroundColor: color.SECONDARY_DARK
                 },
+                headerLeft: (
+                    <HeaderBackButton 
+                    tintColor={color.WHITE}
+                    onPress={() => {
+                        alert("UNDO");
+                        navigation.navigate("Home");
+                    }} />
+                ),
                 headerTintColor: color.WHITE,
                 headerTitleStyle: [
                     {
@@ -49,12 +52,18 @@ const HomeStack = createStackNavigator(
                     },
                     fontSize.CARD_CONTENT
                 ]
-            }
+            })
         }
     },
     {
         // TODO: Change back to home
-        initialRouteName: "NewRoutine",
+        initialRouteName: "Home",
+        transitionConfig: () => ({
+            transitionSpec: {
+                duration: .7,
+                easing: Easing.linear
+            }
+        })
     }
 );
 
