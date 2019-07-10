@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import styles from './WorkoutCardStyle';
 import { fontSize } from '../../config/fontSize';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { color } from '../../config/colors';
 
 // Check if Objects are empty
 const isEmpty = (routines, currentRoutine, workoutName, item, type) => {
