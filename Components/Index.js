@@ -2,10 +2,12 @@ import Nav from './Nav/Nav';
 import * as Font from 'expo-font';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { useScreens } from 'react-native-screens';
 import { isFontLoaded } from '../Redux/Actions/initLoadAction';
 
 class Index extends Component {
     async componentDidMount() {
+        useScreens();
         await Font.loadAsync({
             'Roboto-Regular': require("../assets/fonts/Roboto-Regular.ttf"),
             'Roboto-Medium': require("../assets/fonts/Roboto-Medium.ttf"),
