@@ -1,10 +1,10 @@
 import React from 'react';
 import Home from '../Home';
+import Routine from './RoutineStack';
 import { color } from '../../config/colors';
 import { fontSize } from '../../config/fontSize';
-import NewRoutine from '../Pages/New Routine/NewRoutine';
 import { createStackNavigator, HeaderBackButton } from 'react-navigation';
-import { View, Text, Image, Button, TouchableOpacity, Easing } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Easing } from 'react-native';
 
 const HomeStack = createStackNavigator(
     {
@@ -21,7 +21,7 @@ const HomeStack = createStackNavigator(
                     <View style={{ flex: 1, width: "100%", height: "100%", flexDirection: "row", alignContent: "center", justifyContent: "center" }}>
                         <View style={{ width: "90%", height: "100%", flexDirection: "row", borderBottomWidth: .75, borderBottomColor: color.HIGHLIGHT }}>
                             <Text style={[fontSize.PAGE_TITLE, { flex: 1, color: color.WHITE, marginRight: "auto", alignSelf: 'center', }]}>WORKOUTS</Text>
-                            <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 50, alignSelf: "center" }} onPress={() => navigation.navigate("NewRoutine")}>
+                            <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 50, alignSelf: "center" }} onPress={() => navigation.navigate("Routine")}>
                                 <Image style={{ width: "100%", height: "100%" }} source={require("../../../assets/addWorkout.png")} />
                             </TouchableOpacity>
                         </View>
@@ -29,21 +29,21 @@ const HomeStack = createStackNavigator(
                 ),
             })
         },
-        NewRoutine: {
-            screen: NewRoutine,
+        Routine: {
+            screen: Routine,
             navigationOptions: ({ navigation }) => ({
-                title: "NEW ROUTINE",
+                title: "ROUTINE PLACEHOLDER",
                 headerStyle: {
                     borderBottomWidth: 0,
                     backgroundColor: color.SECONDARY_DARK
                 },
                 headerLeft: (
-                    <HeaderBackButton 
-                    tintColor={color.WHITE}
-                    onPress={() => {
-                        alert("UNDO");
-                        navigation.navigate("Home");
-                    }} />
+                    <HeaderBackButton
+                        tintColor={color.WHITE}
+                        onPress={() => {
+                            alert("UNDO");
+                            navigation.navigate("Home");
+                        }} />
                 ),
                 headerTintColor: color.WHITE,
                 headerTitleStyle: [
@@ -53,14 +53,14 @@ const HomeStack = createStackNavigator(
                     fontSize.CARD_CONTENT
                 ]
             })
-        }
+        },
     },
     {
         // TODO: Change back to home
         initialRouteName: "Home",
         transitionConfig: () => ({
             transitionSpec: {
-                duration: .7,
+                duration: .2,
                 easing: Easing.linear
             }
         })
