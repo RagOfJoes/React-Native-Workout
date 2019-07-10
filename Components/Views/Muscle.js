@@ -5,55 +5,46 @@ import Arms from '../../assets/Arms.png';
 import Legs from '../../assets/Legs.png';
 import Chest from '../../assets/Chest.png';
 import Shoulders from '../../assets/Shoulders.png';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
-class Muscle extends React.Component {
-    shouldComponentUpdate(nextProps, nestState) {
-        return false;
-    }
+class Muscle extends React.PureComponent {
     render() {
         const { containerStyle, muscleName, _press } = this.props;
         switch (muscleName) {
             case "Abs":
                 return (
-                    <View style={containerStyle} onPress={_press}>
+                    <TouchableOpacity style={containerStyle} onPress={_press}>
                         <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Abs} />
-                    </View>
+                    </TouchableOpacity>
                 )
             case "Back":
                 return (
-                    <View style={containerStyle} onPress={_press}>
+                    <TouchableOpacity style={containerStyle} onPress={_press}>
                         <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Back} />
-                    </View>
+                    </TouchableOpacity>
                 )
             case "Arms":
                 return (
-                    <View style={containerStyle} onPress={_press}>
+                    <TouchableOpacity style={containerStyle} onPress={_press}>
                         <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Arms} />
-                    </View>
+                    </TouchableOpacity>
                 )
             case "Legs":
                 return (
-                    <View style={containerStyle} onPress={_press}>
+                    <TouchableOpacity style={containerStyle} onPress={_press}>
                         <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Legs} />
-                    </View>
+                    </TouchableOpacity>
                 )
             case "Chest":
                 return (
-                    <View style={containerStyle} onPress={_press}>
+                    <TouchableOpacity style={containerStyle} onPress={_press}>
                         <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Chest} />
-                    </View>
+                    </TouchableOpacity>
                 )
             case "Shoulders":
                 return (
-                    <View style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Shoulders} />
-                    </View>
-                )
-            case "Last":
-                return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image source={require("../../assets/StartEdit.png")} style={{ width: "60%", height: "60%" }} resizeMode="contain" />
+                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Shoulders} />
                     </TouchableOpacity>
                 )
             default:
