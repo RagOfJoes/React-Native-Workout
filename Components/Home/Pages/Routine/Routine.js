@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
+import createUID from '../../../config/createUID';
 import { fontSize } from '../../../config/fontSize';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { DeleteAction, RightAction } from './SwipeActions/Actions';
@@ -36,8 +37,8 @@ const RoutineHeader = () => {
 
 class Routine extends React.PureComponent {
     // Custom Render Function
-    renderItem = (currentRoutine, { WorkoutNames }, item) => {
-        const isDeletable = WorkoutNames.length > 1;
+    renderItem = (currentRoutine, Workouts, item) => {
+        const isDeletable = Workouts.length > 1;
 
         return (
             <Swipeable overshootLeft={false} overshootRight={false} containerStyle={{ flex: 1, marginBottom: 10, overflow: "visible" }}
@@ -52,7 +53,7 @@ class Routine extends React.PureComponent {
                     <RightAction
                         dragX={dragX}
                         progress={progress}
-                        _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine))}
+                        _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine, `Workout ${createUID()}`))}
                         _pressEdit={() => this.props.navigation.navigate("Workout", { workout: item })}
                     />
                 }
@@ -66,8 +67,8 @@ class Routine extends React.PureComponent {
 
     render() {
         const { props } = this;
-        const { routines, currentRoutine } = props;
-        const { WorkoutNames } = routines[currentRoutine];
+        const { routines, currentRoutine } = props.Routines;
+        const { Workouts } = routines[currentRoutine];
 
         return (
             <View style={styles.RoutineWrapper} >
@@ -80,13 +81,13 @@ class Routine extends React.PureComponent {
                         </View>
                         <FlatList
                             numColumns="1"
-                            data={WorkoutNames}
+                            data={Workouts}
                             overScrollMode="never"
-                            extraData={WorkoutNames}
+                            extraData={Workouts}
                             style={{ flex: 1, width: "100%" }}
                             keyExtractor={(item, index) => `${currentRoutine}-${item}-${index}`}
                             renderItem={({ item, index }) =>
-                                this.renderItem(currentRoutine, routines[currentRoutine], item, index)
+                                this.renderItem(currentRoutine, Workouts, item, index)
                             }
                         />
                     </View>
@@ -262,7 +263,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-    return state.Routines;
+    return state;
 }
 
 export default connect(mapStateToProps)(Routine);

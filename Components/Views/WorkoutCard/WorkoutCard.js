@@ -6,26 +6,16 @@ import { fontSize } from '../../config/fontSize';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 // Check if Objects are empty
-const isEmpty = (routines, currentRoutine, workoutName, item, type) => {
-    const workout = routines[currentRoutine].Workouts[workoutName];
-    if (routines[currentRoutine].Workouts[workoutName]) {
-        switch (type) {
-            case "Exercise":
-                return workout.ExercisesNames ? false : true;
-            case "Muscle":
-                return workout.Exercises && workout.Exercises[item] && workout.Exercises[item].Type ? false : true;
-            default:
-                return true;
-        }
-    }
-    return true;
+const isEmpty = (Workouts, Exercises, item, type) => {
+    return Exercises.exercises[item].Type ? false : true;
 }
 
 // Custom RenderItem Function
-const renderItem = ({ routines, currentRoutine, workoutName }, item, index) => {
+const renderItem = ({ Workouts, workoutName, Exercises }, item, index) => {
+    const { exercises } = Exercises;
     // Get MuscleName if UNDEFINED then return Empty
-    const muscleName = !isEmpty(routines, currentRoutine, workoutName, item, "Muscle") ?
-        routines[currentRoutine].Workouts[workoutName].Exercises[item].Type
+    const muscleName = !isEmpty(Workouts, Exercises, item, "Muscle") ?
+        exercises[item].Type
         : "Empty";
 
     const key = `${workoutName}-${item}-${index}`;
@@ -55,9 +45,10 @@ const Start = () => {
 class WorkoutCard extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         const { exercises } = this.props;
-        const { routines, currentRoutine, workoutName } = nextProps;
+        const { Workouts, workoutName } = nextProps;
+        const { workouts } = Workouts;
 
-        const nextWorkout = routines[currentRoutine].Workouts[workoutName].ExercisesNames;
+        const nextWorkout = workouts[workoutName].Exercises;
 
         return exercises !== nextWorkout;
     }
@@ -99,7 +90,7 @@ class WorkoutCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return state.Routines;
+    return state;
 }
 
 export default connect(mapStateToProps)(WorkoutCard);
