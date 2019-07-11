@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from '../Home';
-import Routine from './RoutineStack';
 import { color } from '../../config/colors';
+import Routine from '../Pages/Routine/Routine';
+import Workout from '../Pages/Workout/Workout';
 import { fontSize } from '../../config/fontSize';
 import { createStackNavigator, HeaderBackButton } from 'react-navigation';
 import { View, Text, Image, TouchableOpacity, Easing } from 'react-native';
@@ -54,13 +55,37 @@ const HomeStack = createStackNavigator(
                 ]
             })
         },
+        Workout: {
+            screen: Workout,
+            navigationOptions: ({ navigation }) => ({
+                headerStyle: {
+                    borderBottomWidth: 0,
+                    backgroundColor: color.SECONDARY_DARK
+                },
+                headerLeft: (
+                    <HeaderBackButton
+                        tintColor={color.WHITE}
+                        onPress={() => {
+                            alert("UNDO");
+                            navigation.goBack();
+                        }} />
+                ),
+                headerTintColor: color.WHITE,
+                headerTitleStyle: [
+                    {
+                        color: color.WHITE
+                    },
+                    fontSize.CARD_CONTENT
+                ]
+            })
+        }
     },
     {
         // TODO: Change back to home
         initialRouteName: "Home",
         transitionConfig: () => ({
             transitionSpec: {
-                duration: .2,
+                duration: .7,
                 easing: Easing.linear
             }
         })

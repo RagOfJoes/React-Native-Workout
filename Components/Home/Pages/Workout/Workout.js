@@ -5,6 +5,14 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import ExerciseCard from './Exercises/ExerciseCard';
 
 class Workout extends Component {
+    static navigationOptions({navigation}) {
+        const Workout = navigation.getParam("workout", "noWorkout");
+
+        return {
+            headerTitle: Workout
+        }
+    }
+
     renderItem = ({ routines, currentRoutine }, Workout, Exercise) => {
         const { Type } = routines[currentRoutine].Workouts[Workout].Exercises[Exercise];
 
@@ -35,6 +43,7 @@ class Workout extends Component {
                         data={ExercisesNames}
                         overScrollMode="never"
                         extraData={ExercisesNames}
+                        getItemLayout={(data, index) => { return { length: 120, offset: 120 * index, index } }}
                         keyExtractor={(item, index) => `${Workout}-${item}-${index}`}
                         renderItem={({ item, index }) =>
                             this.renderItem(props, Workout, item)
@@ -49,18 +58,15 @@ class Workout extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: "auto",
+        height: "100%",
         flexDirection: "column",
-        justifyContent: "flex-end"
     },
     row: {
         flex: 1,
-        maxHeight: "80%",
+        minHeight: "100%",
         paddingVertical: 15,
         flexDirection: "column",
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        backgroundColor: color.SECONDARY_DARK,
+        backgroundColor: color.PRIMARY_DARK,
     },
 })
 
