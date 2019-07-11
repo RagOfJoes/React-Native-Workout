@@ -1,15 +1,15 @@
 import Card from '../../../../Views/Card';
 import Menu from '../../../../Views/Menu';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Muscle from '../../../../Views/Muscle';
 import { color } from '../../../../config/colors';
 import { fontSize } from '../../../../config/fontSize';
-import { View, Animated, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native';
+import { View, Animated, Dimensions, TextInput, StyleSheet } from 'react-native';
 
-class ExerciseCard extends PureComponent {
+class ExerciseCard extends Component {
     state = { // local state
         isOpen: false,
-        pickedMuscle: ""
+        pickedMuscle: "None"
     }
     musclePicker = new Animated.Value(0);
 
@@ -29,19 +29,21 @@ class ExerciseCard extends PureComponent {
 
     // Renders user's picked muscle
     renderPickedMuscle = () => {
-        if (this.state.pickedMuscle.length > 0) {
-            this._closeMusclePickerAnimation();
-            return (
-                <Muscle muscleName={this.state.pickedMuscle} containerStyle={styles.exerciseMuscleButton} _press={() => this._openMusclePickerAnimation()} />
-            );
-        };
-        return (
-            <TouchableOpacity style={styles.exerciseMuscleButton} onPress={() => this._openMusclePickerAnimation()} />
-        );
+        this._closeMusclePickerAnimation();
     };
 
     componentDidMount() {
         this.setState({ pickedMuscle: this.props.Muscle })
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        const nextMuscle = nextState.pickedMuscle;
+        if (this.state.pickedMuscle !== nextMuscle) {
+            this.renderPickedMuscle();
+            return true;
+        }
+
+        return false;
     }
 
     render() {
@@ -49,12 +51,10 @@ class ExerciseCard extends PureComponent {
         const { Exercise } = props;
 
         return (
-            <Card addContStyle={{ paddingVertical: 15, paddingHorizontal: 25, alignSelf: "center" }}>
+            <Card addContStyle={{ marginBottom: 10, paddingVertical: 15, paddingHorizontal: 25, alignSelf: "center" }}>
                 <View style={styles.exerciseCardRowOne}>
                     <View style={styles.exerciseCardColOne}>
-                        {
-                            this.renderPickedMuscle()
-                        }
+                        <Muscle muscleName={this.state.pickedMuscle} containerStyle={styles.exerciseMuscleButton} _press={() => this._openMusclePickerAnimation()} />
                     </View>
                     <View style={styles.exerciseCardColTwo}>
                         <TextInput style={[fontSize.CARD_CONTENT, styles.exerciseName]} defaultValue={Exercise} maxLength={20} autoCapitalize="words" />
