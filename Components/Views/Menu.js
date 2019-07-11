@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         zIndex: 2,
         height: "100%",
         borderRadius: 5,
+        overflow: "hidden",
         alignSelf: "center",
         position: "absolute",
         flexDirection: "row",
