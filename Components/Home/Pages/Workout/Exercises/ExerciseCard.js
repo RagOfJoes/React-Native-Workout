@@ -51,7 +51,7 @@ class ExerciseCard extends Component {
         const { Exercise } = props;
 
         return (
-            <Card addContStyle={{ marginBottom: 10, paddingVertical: 15, paddingHorizontal: 25, alignSelf: "center" }}>
+            <Card addContStyle={{ marginVertical: 5, paddingVertical: 15, paddingHorizontal: 25, alignSelf: "center" }}>
                 <View style={styles.exerciseCardRowOne}>
                     <View style={styles.exerciseCardColOne}>
                         <Muscle muscleName={this.state.pickedMuscle} containerStyle={styles.exerciseMuscleButton} _press={() => this._openMusclePickerAnimation()} />

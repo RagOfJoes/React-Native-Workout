@@ -58,15 +58,15 @@ class Workout extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: "100%",
         height: "100%",
-        flexDirection: "column",
-    },
-    row: {
-        flex: 1,
-        minHeight: "100%",
         paddingVertical: 15,
         flexDirection: "column",
         backgroundColor: color.PRIMARY_DARK,
+    },
+    row: {
+        flex: 1,
+        flexDirection: "column"
     },
 })
 
