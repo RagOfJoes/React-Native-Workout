@@ -14,39 +14,43 @@ class Muscle extends React.PureComponent {
             case "Abs":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Abs} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Abs} />
                     </TouchableOpacity>
                 )
             case "Back":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Back} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Back} />
                     </TouchableOpacity>
                 )
             case "Arms":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Arms} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Arms} />
                     </TouchableOpacity>
                 )
             case "Legs":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Legs} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Legs} />
                     </TouchableOpacity>
                 )
             case "Chest":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Chest} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Chest} />
                     </TouchableOpacity>
                 )
             case "Shoulders":
                 return (
                     <TouchableOpacity style={containerStyle} onPress={_press}>
-                        <Image style={{ width: "60%", height: "60%" }} resizeMode="contain" source={Shoulders} />
+                        <Image style={{ width: 35, height: 35 }} resizeMode="contain" source={Shoulders} />
                     </TouchableOpacity>
                 )
+            case "None":
+                return (
+                    <TouchableOpacity style={containerStyle} onPress={_press}></TouchableOpacity>
+                );
             default:
                 return null;
         };
