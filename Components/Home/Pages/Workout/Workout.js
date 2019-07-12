@@ -5,7 +5,7 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import ExerciseCard from './Exercises/ExerciseCard';
 
 class Workout extends Component {
-    static navigationOptions({navigation}) {
+    static navigationOptions({ navigation }) {
         const Workout = navigation.getParam("workout", "noWorkout");
 
         return {
@@ -13,8 +13,9 @@ class Workout extends Component {
         }
     }
 
-    renderItem = ({ routines, currentRoutine }, Workout, Exercise) => {
-        const { Type } = routines[currentRoutine].Workouts[Workout].Exercises[Exercise];
+    renderItem = ({ Exercises }, Exercise) => {
+        const { exercises } = Exercises;
+        const { Type } = exercises[Exercise];
 
         return (
             <ExerciseCard Muscle={Type} Exercise={Exercise} />
@@ -22,13 +23,18 @@ class Workout extends Component {
     }
 
     render() {
-        const { props } = this;
-        // TODO: Create WorkoutsReducer to reduce lookup and to take less params.
-        const { navigation, routines, currentRoutine } = props;
+        const { props, renderItem } = this;
+        const { navigation, Workouts } = props;
+
+        // Get param from navigation
         const Workout = navigation.getParam("workout", "noWorkout");
-        const { ExercisesNames } = routines[currentRoutine].Workouts[Workout];
+        
+        const { workouts } = Workouts;
+        
+        // Get Exercises from current Workout
+        const { Exercises } = workouts[Workout];
 
-
+        // If no param was sent or found then redirect back to previous page
         if (Workout === "noWorkout") {
             // Send message to inform user of reason
             return (
@@ -40,14 +46,11 @@ class Workout extends Component {
                     <FlatList
                         numColumns="1"
                         style={styles.row}
-                        data={ExercisesNames}
+                        data={Exercises}
+                        extraData={Exercises}
                         overScrollMode="never"
-                        extraData={ExercisesNames}
-                        getItemLayout={(data, index) => { return { length: 120, offset: 120 * index, index } }}
+                        renderItem={({ item, index }) => renderItem(props, item)}
                         keyExtractor={(item, index) => `${Workout}-${item}-${index}`}
-                        renderItem={({ item, index }) =>
-                            this.renderItem(props, Workout, item)
-                        }
                     />
                 </View>
             )
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         height: "100%",
-        paddingVertical: 15,
+        // paddingVertical: 15,
         flexDirection: "column",
         backgroundColor: color.PRIMARY_DARK,
     },
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-    return state.Routines;
+    return state;
 }
 
 export default connect(mapStateToProps)(Workout);
