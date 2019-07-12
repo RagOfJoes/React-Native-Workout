@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         height: "100%",
-        // paddingVertical: 15,
+        paddingBottom: 15,
         flexDirection: "column",
         backgroundColor: color.PRIMARY_DARK,
     },
