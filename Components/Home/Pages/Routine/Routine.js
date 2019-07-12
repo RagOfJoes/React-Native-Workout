@@ -6,7 +6,7 @@ import { fontSize } from '../../../config/fontSize';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { DeleteAction, RightAction } from './SwipeActions/Actions';
 import { addWorkout, delWorkout } from '../../../../Redux/Actions/routineAction';
-import { View, Text, TouchableOpacity, FlatList, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, TextInput, StyleSheet } from 'react-native';
 
 const RoutineHeader = () => {
     return (
@@ -94,7 +94,7 @@ class Routine extends React.PureComponent {
                     {/* End Workouts Card */}
                     <View style={styles.saveRow}>
                         <TouchableOpacity style={styles.saveCol}>
-                            <Text style={{ fontSize: 35, color: color.WHITE }}>✓</Text>
+                            <Image style={{ width: 60, height: 60}} source={require('../../../../assets/Save.png')} resizeMode="cover"></Image>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -242,8 +242,8 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     saveCol: {
-        width: 56,
-        height: 56,
+        width: 60,
+        height: 60,
         borderRadius: 50,
         alignItems: "center",
         alignContent: "center",
@@ -258,7 +258,6 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
 
         elevation: 7,
-        backgroundColor: color.GREEN
     }
 })
 
