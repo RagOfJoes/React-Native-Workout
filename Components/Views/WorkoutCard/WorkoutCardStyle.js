@@ -96,8 +96,6 @@ const styles = StyleSheet.create({
         borderColor: color.SECONDARY_DARK,
         backgroundColor: color.TERTIARY_DARK,
         height: Dimensions.get("screen").height / 12, // approximate a square
-
-        elevation: 5,
     },
     muscleGroup: {
         flex: 1,
