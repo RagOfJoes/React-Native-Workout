@@ -1,13 +1,13 @@
 const initState = {
-    isFontLoaded: false
+    isAssetLoaded: false
 }
 
 const initLoadReducer = (state = initState, action) => {
     switch (action.type) {
-        case "IS_FONT_LOADED":
+        case "IS_ASSET_LOADED":
             return {
                 ...state,
-                isFontLoaded: action.isLoaded
+                isAssetLoaded: action.isLoaded
             }
         default:
             return state;

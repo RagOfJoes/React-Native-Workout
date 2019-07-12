@@ -1,4 +1,4 @@
-export const isFontLoaded = (isLoaded) => ({
-    type: "IS_FONT_LOADED",
+export const isAssetLoaded = (isLoaded) => ({
+    type: "IS_ASSET_LOADED",
     isLoaded
 })
