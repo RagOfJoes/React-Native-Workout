@@ -1,7 +1,9 @@
 import React from 'react';
 import Muscle from './Muscle';
 import { color } from '../config/colors';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated, FlatList, StyleSheet } from 'react-native';
+
+const muscleData = ["Chest", "Shoulders", "Back", "Abs", "Arms", "Legs"];
 
 const Menu = (props) => {
     const { action, width, pickedMuscle } = props;
@@ -9,12 +11,14 @@ const Menu = (props) => {
     return (
         action === "Muscles" ?
             <Animated.View style={[styles.exerciseMusclePicker, { width: width.interpolate({ inputRange: [0, 1], outputRange: ["0%", "100%"] }), }]}>
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Chest" _press={() => pickedMuscle("Chest")} />
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Shoulders" _press={() => pickedMuscle("Shoulders")} />
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Back" _press={() => pickedMuscle("Back")} />
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Abs" _press={() => pickedMuscle("Abs")} />
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Arms" _press={() => pickedMuscle("Arms")} />
-                <Muscle containerStyle={styles.muscleContainer} muscleName="Legs" _press={() => pickedMuscle("Legs")} />
+                <FlatList
+                    horizontal
+                    data={muscleData}
+                    scrollEnabled={false}
+                    contentContainerStyle={styles.muscleContainer}
+                    keyExtractor={(item, index) => `${item}-${index}`}
+                    renderItem={({item}) => <Muscle muscleName={item} _press={() => pickedMuscle(item)} />}
+                />
             </Animated.View>
             :
             // TODO: Create action menu
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
     muscleContainer: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "space-evenly"
     }
 })
 
