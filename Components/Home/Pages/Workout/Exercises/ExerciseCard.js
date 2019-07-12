@@ -11,7 +11,22 @@ class ExerciseCard extends Component {
         isOpen: false,
         pickedMuscle: "None"
     }
+    actionMenu = new Animated.Value(0);
     musclePicker = new Animated.Value(0);
+
+    _openActionMenuAnimation = () => {
+        Animated.timing(this.actionMenu, {
+            toValue: 1,
+            duration: 80,
+        }).start();
+    }
+
+    _closeActionMenuAnimation = () => {
+        Animated.timing(this.actionMenu, {
+            toValue: 0,
+            duration: 40
+        }).start();
+    }
 
     _openMusclePickerAnimation = () => {
         Animated.timing(this.musclePicker, {
@@ -27,6 +42,15 @@ class ExerciseCard extends Component {
         }).start();
     }
 
+    shouldOpenAction = () => {
+        if (this.state.isOpen) {
+            this._closeActionMenuAnimation();
+        } else {
+            this._openActionMenuAnimation();
+        }
+        this.setState({ isOpen: !this.state.isOpen });
+    }
+
     // Renders user's picked muscle
     renderPickedMuscle = () => {
         this._closeMusclePickerAnimation();
@@ -34,7 +58,7 @@ class ExerciseCard extends Component {
 
     componentDidMount() {
         this.setState({ pickedMuscle: this.props.Muscle })
-    }
+    };
 
     shouldComponentUpdate(nextProps, nextState) {
         const nextMuscle = nextState.pickedMuscle;
@@ -44,7 +68,7 @@ class ExerciseCard extends Component {
         }
 
         return false;
-    }
+    };
 
     render() {
         const { props } = this;
@@ -61,12 +85,17 @@ class ExerciseCard extends Component {
                     </View>
                     <Menu action="Muscles" pickedMuscle={(muscle) => this.setState({ pickedMuscle: muscle })} width={this.musclePicker} />
                 </View>
+
+                <View style={styles.exerciseCardRowTwo}>
+                    <Menu actionPress={() => this.shouldOpenAction()} width={this.actionMenu} />
+                </View>
             </Card>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    // Start Row One
     exerciseCardRowOne: {
         flex: 1,
         height: "100%",
@@ -125,6 +154,18 @@ const styles = StyleSheet.create({
         color: color.WHITE,
         marginHorizontal: 10,
     },
+    // End Row One
+
+    // Start Row Two
+    exerciseCardRowTwo: {
+        flex: .4,
+        height: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        alignContent: "center",
+        justifyContent: "center",
+    },
+    // End Row Two
 })
 
 export default ExerciseCard;
