@@ -5,13 +5,27 @@ import { Text, Animated, TouchableOpacity, StyleSheet } from 'react-native';
 
 export const DeleteAction = ({ dragX, _pressDel }) => {
     const opacity = dragX.interpolate({
-        inputRange: [0, 65],
+        inputRange: [0, 60],
         outputRange: [0, 1]
     })
     return (
-        <Animated.View style={[{ opacity: opacity }, styles.deleteWorkoutRow]}>
-            <TouchableOpacity onPress={_pressDel} style={{ flex: 1, height: "70%", alignContent: "center", backgroundColor: color.RED, justifyContent: "center" }}>
+        <Animated.View style={[{ opacity: opacity, marginRight: "-5%" }, styles.singlActionRow]}>
+            <TouchableOpacity onPress={_pressDel} style={styles.deleteWorkoutCol}>
                 <Text style={[fontSize.CARD_CONTENT, { color: color.WHITE, textAlign: "center" }]}>DELETE</Text>
+            </TouchableOpacity>
+        </Animated.View>
+    )
+}
+
+export const AddAction = ({ dragX, progress, _pressAdd }) => {
+    const opacity = dragX.interpolate({
+        inputRange: [-65, 0],
+        outputRange: [1, 0]
+    });
+    return (
+        <Animated.View style={[{ opacity: opacity, marginLeft: "-5%" }, styles.singlActionRow]}>
+            <TouchableOpacity onPress={_pressAdd} style={styles.addActionCol}>
+                <Text style={[fontSize.CARD_CONTENT, { color: color.WHITE, textAlign: "center" }]}>ADD</Text>
             </TouchableOpacity>
         </Animated.View>
     )
@@ -24,11 +38,11 @@ export const RightAction = ({ dragX, _pressAdd, _pressEdit }) => {
     });
     return (
         <Animated.View style={[{ opacity: opacity }, styles.rightActionsRow]}>
-            <TouchableOpacity onPress={_pressEdit} style={{ flex: 1, height: "70%", justifyContent: "center", backgroundColor: color.HIGHLIGHT }}>
-                <Text style={[fontSize.CARD_CONTENT, { color: color.GREEN, textAlign: "center" }]}>EDIT</Text>
+            <TouchableOpacity onPress={_pressEdit} style={styles.rightActionColOne}>
+                <Text style={[fontSize.CARD_CONTENT, { color: color.SECONDARY_DARK, textAlign: "center" }]}>EDIT</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={_pressAdd} style={{ flex: 1, height: "70%", justifyContent: "center", backgroundColor: color.GREEN }}>
-                <Text style={[fontSize.CARD_CONTENT, { color: color.HIGHLIGHT, textAlign: "center" }]}>ADD</Text>
+            <TouchableOpacity onPress={_pressAdd} style={styles.rightActionColTwo}>
+                <Text style={[fontSize.CARD_CONTENT, { color: color.SECONDARY_DARK, textAlign: "center" }]}>ADD</Text>
             </TouchableOpacity>
         </Animated.View>
     )
@@ -36,20 +50,49 @@ export const RightAction = ({ dragX, _pressAdd, _pressEdit }) => {
 
 const styles = StyleSheet.create({
     // Start Swipe
-    deleteWorkoutRow: {
+    singlActionRow: {
         width: 80,
         height: "100%",
-        marginRight: "-5%",
         flexDirection: "row",
-        alignItems: "center",
         justifyContent: "center",
+    },
+    deleteWorkoutCol: {
+        flex: 1,
+        height: "100%",
+        marginBottom: 10,
+        alignContent: "center",
+        justifyContent: "center",
+        backgroundColor: color.RED,
+    },
+    addActionCol: {
+        flex: 1,
+        height: "100%",
+        marginBottom: 10,
+        alignContent: "center",
+        justifyContent: "center",
+        backgroundColor: color.GREEN,
     },
     rightActionsRow: {
         width: 120,
         height: "100%",
         marginLeft: "-5%",
         flexDirection: "row",
+        justifyContent: "center",
+    },
+    rightActionColOne: {
+        flex: 1,
+        height: "100%",
+        marginBottom: 10,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: color.HIGHLIGHT
+    },
+    rightActionColTwo: {
+        flex: 1,
+        height: "100%",
+        marginBottom: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: color.GREEN
     }
 });
