@@ -8,27 +8,26 @@ import { useScreens } from 'react-native-screens';
 import { isAssetLoaded } from '../Redux/Actions/initLoadAction';
 
 class Index extends Component {
-    async componentDidMount() {
+    componentDidMount() {
         useScreens();
+    }
 
-        await Promise.all([
-            Asset.loadAsync([
-                require('../assets/Abs.png'),
-                require('../assets/Arms.png'),
-                require('../assets/Back.png'),
-                require('../assets/Legs.png'),
-                require('../assets/Save.png'),
-                require('../assets/Chest.png'),
-                require('../assets/Shoulders.png'),
-            ]),
-            Font.loadAsync({
-                'Roboto-Regular': require("../assets/fonts/Roboto-Regular.ttf"),
-                'Roboto-Medium': require("../assets/fonts/Roboto-Medium.ttf"),
-                'Roboto-Bold': require("../assets/fonts/Roboto-Bold.ttf")
-            })
-        ]);
+    async _startResourceAsync() {
+        const images = [require('../assets/Abs.png'), require('../assets/Arms.png'), require('../assets/Back.png'),
+        require('../assets/Legs.png'), require('../assets/Save.png'), require('../assets/Chest.png'),
+        require('../assets/Shoulders.png')];
 
-        return this.props.dispatch(isAssetLoaded(true));
+        const fonts = {
+            'Roboto-Regular': require("../assets/fonts/Roboto-Regular.ttf"),
+            'Roboto-Medium': require("../assets/fonts/Roboto-Medium.ttf"),
+            'Roboto-Bold': require("../assets/fonts/Roboto-Bold.ttf")
+        };
+
+        const cacheImages = images.map((image) => {
+            return Asset.fromModule(image).downloadAsync();
+        });
+
+        return await Promise.all([cacheImages, Font.loadAsync(fonts)]);
     }
 
     render() {
@@ -36,7 +35,11 @@ class Index extends Component {
             // TODO: Create a loading screen
             this.props.isAssetLoaded ?
                 <Nav />
-                : <AppLoading />
+                : <AppLoading
+                    startAsync={() => this._startResourceAsync()}
+                    onFinish={() => this.props.dispatch(isAssetLoaded(true))}
+                    onError={console.log("ERROR")}
+                />
         );
     }
 }
