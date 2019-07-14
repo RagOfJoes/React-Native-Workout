@@ -1,4 +1,4 @@
-import Nav from './Nav/Nav';
+import Root from './Nav/Nav';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 import { AppLoading } from 'expo';
@@ -27,18 +27,18 @@ class Index extends Component {
             return Asset.fromModule(image).downloadAsync();
         });
 
-        return await Promise.all([cacheImages, Font.loadAsync(fonts)]);
+        return Promise.all([cacheImages, Font.loadAsync(fonts)]);
     }
 
     render() {
         return (
             // TODO: Create a loading screen
             this.props.isAssetLoaded ?
-                <Nav />
+                <Root />
                 : <AppLoading
                     startAsync={() => this._startResourceAsync()}
                     onFinish={() => this.props.dispatch(isAssetLoaded(true))}
-                    onError={console.log("ERROR")}
+                    onError={() => console.log("ERROR")}
                 />
         );
     }
