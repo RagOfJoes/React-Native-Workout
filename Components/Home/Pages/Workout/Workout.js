@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { color } from '../../../config/colors';
 import { View, FlatList, StyleSheet } from 'react-native';
-import ExerciseCard from './Exercises/ExerciseCard';
+import ExerciseCard from '../Routine/Components/ExerciseCard';
 
 class Workout extends Component {
     static navigationOptions({ navigation }) {
@@ -23,14 +23,15 @@ class Workout extends Component {
     }
 
     render() {
+        const HEIGHT = 120;
         const { props, renderItem } = this;
         const { navigation, Workouts } = props;
 
         // Get param from navigation
         const Workout = navigation.getParam("workout", "noWorkout");
-        
+
         const { workouts } = Workouts;
-        
+
         // Get Exercises from current Workout
         const { Exercises } = workouts[Workout];
 
@@ -45,12 +46,14 @@ class Workout extends Component {
                 <View style={styles.container}>
                     <FlatList
                         numColumns="1"
-                        style={styles.row}
                         data={Exercises}
                         extraData={Exercises}
                         overScrollMode="never"
                         renderItem={({ item, index }) => renderItem(props, item)}
+                        style={{ flex: 1, marginTop: 30, flexDirection: "column" }}
                         keyExtractor={(item, index) => `${Workout}-${item}-${index}`}
+                        ItemSeparatorComponent={() => <View style={{ width: "100%", height: 10 }}></View>}
+                        getItemLayout={(data, index) => ({ length: HEIGHT, offset: (HEIGHT + 10) * index, index })}
                     />
                 </View>
             )
