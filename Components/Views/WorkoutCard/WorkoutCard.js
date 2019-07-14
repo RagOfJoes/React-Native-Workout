@@ -34,6 +34,7 @@ const Empty = () => {
     )
 }
 
+// Start button
 const Start = () => {
     return (
         <TouchableOpacity style={styles.startContainer}>
@@ -43,6 +44,7 @@ const Start = () => {
 }
 
 class WorkoutCard extends React.Component {
+    // Prevents component from completely re-rendering
     shouldComponentUpdate(nextProps, nextState) {
         const { exercises } = this.props;
         const { Workouts, workoutName } = nextProps;
@@ -63,7 +65,7 @@ class WorkoutCard extends React.Component {
                     <View style={styles.workoutCardRow}>
                         {/* Start Workout Title */}
                         <View style={styles.workoutCardTitle}>
-                            <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={1}>Next Workout</Text>
+                            <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={2}>Today Workout</Text>
                             <Text style={[fontSize.CARD_CONTENT, styles.workoutName]}>{workoutName}</Text>
                             <Start />
                         </View>

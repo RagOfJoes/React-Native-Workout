@@ -14,7 +14,7 @@ const NextWorkout = (props) => {
             <WorkoutCard
                 exercises={Exercises}
                 workoutName={workoutNames[0]}
-                currentRoutine="Push Pull Legs"
+                currentRoutine={currentRoutine}
             />
         </View>
     )
