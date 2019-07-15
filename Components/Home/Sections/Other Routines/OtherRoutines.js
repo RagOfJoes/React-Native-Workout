@@ -48,12 +48,13 @@ const OtherRoutines = (props) => {
 
 const styles = StyleSheet.create({
     otherRoutineContainer: {
-        flex: .5,
+        flex: .3,
         width: "100%",
         alignSelf: "center",
+        justifyContent: "center"
     },
     otherRoutineTitleRow: {
-        flex: .1,
+        flex: .15,
         width: "90%",
         alignSelf: "center",
         flexDirection: 'row',
