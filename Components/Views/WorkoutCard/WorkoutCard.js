@@ -6,23 +6,24 @@ import { fontSize } from '../../config/fontSize';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 // Check if Objects are empty
-const isEmpty = (Workouts, Exercises, item, type) => {
+const isEmpty = (Exercises, item, type) => {
     return Exercises.exercises[item].Type ? false : true;
 }
 
 // Custom RenderItem Function
-const renderItem = ({ Workouts, workoutName, Exercises }, item, index) => {
+const renderItem = ({ workoutName, Exercises }, item, index) => {
     const { exercises } = Exercises;
-    // Get MuscleName if UNDEFINED then return Empty
-    const muscleName = !isEmpty(Workouts, Exercises, item, "Muscle") ?
-        exercises[item].Type
-        : "Empty";
+    // Get MuscleName if UNDEFINED then return NULL
+    if (isEmpty(Exercises, item, "Muscle")) {
+        return null;
+    } else {
+        const muscleName = exercises[item].Type;
 
-    const key = `${workoutName}-${item}-${index}`;
-
-    return (
-        <Muscle key={key} containerStyle={styles.muscleContainer} muscleName={muscleName} />
-    )
+        const key = `${workoutName}-${item}-${index}`;
+        return (
+            <Muscle key={key} containerStyle={styles.muscleContainer} muscleName={muscleName} />
+        )
+    }
 }
 
 // Empty Indicator Component 
@@ -57,7 +58,10 @@ class WorkoutCard extends React.Component {
 
     render() {
         const { props } = this;
-        const { workoutName, exercises } = props;
+
+        const { Workouts, workoutName, exercises } = props;
+        const { workouts } = Workouts;
+        const numOfExercises = workouts[workoutName].Exercises.length;
         return (
             <View style={styles.workoutCardContainer}>
                 <View style={styles.workoutCardBackground}>
@@ -65,8 +69,10 @@ class WorkoutCard extends React.Component {
                     <View style={styles.workoutCardRow}>
                         {/* Start Workout Title */}
                         <View style={styles.workoutCardTitle}>
-                            <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={2}>Today Workout</Text>
-                            <Text style={[fontSize.CARD_CONTENT, styles.workoutName]}>{workoutName}</Text>
+                            {/* <Text style={[fontSize.CARD_TITLE, styles.title]} numberOfLines={2}>Today Workout</Text> */}
+                            <Text numberOfLines={2} ellipsizeMode="tail" style={[fontSize.PAGE_TITLE, styles.workoutName]}>{workoutName}</Text>
+                            <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.exercisesTitle]}>EXERCISES</Text>
+                            <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.exercisesNum]}>{numOfExercises}</Text>
                             <Start />
                         </View>
                         {/* End Workout Title */}

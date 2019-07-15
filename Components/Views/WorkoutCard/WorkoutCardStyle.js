@@ -54,6 +54,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         textTransform: "uppercase",
     },
+    exercisesTitle: {
+        color: color.GREY,
+        textAlign: "center"
+    },
+    exercisesNum: {
+        color: color.WHITE,
+        textAlign: "center"
+    },
     // End Title
 
     // Start Start Button
