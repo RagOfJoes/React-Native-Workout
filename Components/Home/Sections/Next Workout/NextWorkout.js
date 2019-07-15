@@ -1,16 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { View, Text } from 'react-native';
 import WorkoutCard from '../../../Views/WorkoutCard/WorkoutCard';
+import { fontSize } from '../../../config/fontSize';
+import { color } from '../../../config/colors';
 
 const NextWorkout = (props) => {
     const { Routines, Workouts } = props;
     const { workouts, workoutNames } = Workouts;
     const { routines, currentRoutine } = Routines;
-    // console.log(workouts);
     const { Exercises } = workouts[routines[currentRoutine].Workouts[0]];
     return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: .5, justifyContent: "center" }}>
+            <Text style={[fontSize.SECTION_TITLE, { width: "90%", color: color.WHITE, alignSelf: "center" }]}>TODAY'S WORKOUT</Text>
             <WorkoutCard
                 exercises={Exercises}
                 workoutName={workoutNames[0]}
