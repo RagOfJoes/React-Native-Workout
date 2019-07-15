@@ -34,7 +34,7 @@ const OtherRoutinesCard = (props) => {
 
 const styles = StyleSheet.create({
     containerStyle: {
-        width: Dimensions.get("screen").width / 1.5,
+        width: Dimensions.get("screen").width / 1.25,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     circleContainer: {
-        flex: .4,
+        flex: .2,
         justifyContent: "center",
     },
     circleView: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         borderRadius: Dimensions.get("screen").width / 20,
     },
     nameContainer: {
-        flex: .6,
+        flex: .8,
         justifyContent: "center"
     },
     nameTitle: {
