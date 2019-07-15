@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
-import WorkoutCard from '../../../Views/WorkoutCard/WorkoutCard';
+import WorkoutCard from './WorkoutCard/WorkoutCard';
 import { fontSize } from '../../../config/fontSize';
 import { color } from '../../../config/colors';
 
-const NextWorkout = (props) => {
+const TodayWorkout = (props) => {
     const { Routines, Workouts } = props;
     const { workouts, workoutNames } = Workouts;
     const { routines, currentRoutine } = Routines;
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps)(NextWorkout);
+export default connect(mapStateToProps)(TodayWorkout);

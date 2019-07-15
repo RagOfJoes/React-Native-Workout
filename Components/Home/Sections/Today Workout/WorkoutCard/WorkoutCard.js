@@ -1,8 +1,8 @@
 import React from 'react';
-import Muscle from '../Muscle';
+import Muscle from '../../../../Views/Muscle';
 import { connect } from 'react-redux';
 import styles from './WorkoutCardStyle';
-import { fontSize } from '../../config/fontSize';
+import { fontSize } from '../../../../config/fontSize';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 // Check if Objects are empty
