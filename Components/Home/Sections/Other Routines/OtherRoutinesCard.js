@@ -1,14 +1,14 @@
 import React from 'react';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
-import { View, Text, StyleSheet } from 'react-native';
 import SwipeableCard from '../../../Views/SwipeableCard';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 
 const OtherRoutinesCard = (props) => {
     const { routineName, numOfWorkouts, numOfExercises } = props;
 
     return (
-        <SwipeableCard containerStyle={{ width: 280 }}>
+        <SwipeableCard containerStyle={styles.containerStyle}>
             <View style={styles.row}>
                 <View style={styles.circleContainer}>
                     <View style={styles.circleView}></View>
@@ -33,28 +33,41 @@ const OtherRoutinesCard = (props) => {
 }
 
 const styles = StyleSheet.create({
+    containerStyle: {
+        width: Dimensions.get("screen").width / 1.5,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
     row: {
         flex: 1,
         flexDirection: "row",
         justifyContent: "center",
     },
     circleContainer: {
-        flex: .2,
+        flex: .4,
         justifyContent: "center",
     },
     circleView: {
-        width: 30,
-        height: 30,
-        borderRadius: 30 / 2,
-        backgroundColor: color.HIGHLIGHT
+        backgroundColor: color.HIGHLIGHT,
+        width: Dimensions.get("screen").width / 10,
+        height: Dimensions.get("screen").width / 10,
+        borderRadius: Dimensions.get("screen").width / 20,
     },
     nameContainer: {
-        flex: .75,
-        justifyContent: "center",
+        flex: .6,
+        justifyContent: "center"
     },
     nameTitle: {
         flex: .3,
-        color: color.GREY
+        color: color.GREY,
     },
     nameText: {
         flex: .4,
