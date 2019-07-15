@@ -1,57 +1,54 @@
 import React from 'react';
-import OtherRoutinesCard from './OtherRoutinesCard';
+import { connect } from 'react-redux';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import OtherRoutinesCard from './OtherRoutinesCard';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 
 const OtherRoutines = (props) => {
-    return (
-        <View style={{ flex: .6, flexDirection: "column", justifyContent: "center", alignItems: "center", borderTopColor: color.HIGHLIGHT, borderTopWidth: .75, backgroundColor: color.SECONDARY_DARK }}>
-            <View style={styles.otherRoutineContainer}>
-                <View style={styles.otherRoutineTitleRow}>
-                    <Text style={[fontSize.SECTION_TITLE, styles.otherRoutineTextOne]}>OTHER ROUTINES</Text>
-                    <TouchableOpacity style={{ flexDirection: "column", justifyContent: "center" }}>
-                        <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutineTextTwo]}>SEE ALL</Text>
-                    </TouchableOpacity>
-                </View>
+    const { Routines, Workouts, Exercises } = props;
+    const { routines, routineNames } = Routines;
+    const { workouts } = Workouts;
 
-                <View style={styles.otherRoutineCardsRow}>
-                    <OtherRoutinesCard />
-                    <OtherRoutinesCard />
-                    <OtherRoutinesCard />
-                    <OtherRoutinesCard />
-                </View>
+    return (
+        <View style={styles.otherRoutineContainer}>
+            <View style={styles.otherRoutineTitleRow}>
+                <Text style={[fontSize.SECTION_TITLE, styles.otherRoutineTitle]}>OTHER ROUTINES</Text>
             </View>
+
+            <FlatList
+                horizontal
+                scrollEnabled
+                data={routineNames}
+                keyExtractor={(item, index) => item}
+                style={{ flex: 1, width: "90%", alignSelf: "center" }}
+                renderItem={({ item, index }) => <OtherRoutinesCard routineName={item} numOfWorkouts={routines[item].Workouts.length} numOfExercises="12" />}
+                ItemSeparatorComponent={() => <View style={{ width: 10, height: 10 }}></View>}
+            />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     otherRoutineContainer: {
-        flex: .75,
-        width: "90%",
+        flex: .5,
+        width: "100%",
         alignSelf: "center",
-        flexDirection: "column",
-        justifyContent: "center",
     },
     otherRoutineTitleRow: {
-        flex: .7,
+        flex: .1,
+        width: "90%",
+        alignSelf: "center",
         flexDirection: 'row',
     },
-    otherRoutineTextOne: {
+    otherRoutineTitle: {
         color: color.WHITE,
         marginRight: "auto",
     },
-    otherRoutineTextTwo: {
-        marginTop: "auto",
-        color: color.GREY,
-    },
-    otherRoutineCardsRow: {
-        flex: 3,
-        overflow: "hidden",
-        flexDirection: "row",
-        justifyContent: "space-between"
-    }
 })
 
-export default OtherRoutines;
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps)(OtherRoutines);

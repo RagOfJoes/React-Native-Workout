@@ -1,44 +1,78 @@
 import React from 'react';
-import Card from '../../../Views/Card';
 import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
-import { Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import SwipeableCard from '../../../Views/SwipeableCard';
 
 const OtherRoutinesCard = (props) => {
+    const { routineName, numOfWorkouts, numOfExercises } = props;
+
     return (
-        <Card containerStyle={styles.otherRoutinesCardContainer} isTouchable>
-            <Text style={[fontSize.CARD_SECONDARY_TEXT, styles.otherRoutinesCardText]} numberOfLines={3}>stronglift 5x5</Text>
-        </Card>
+        <SwipeableCard containerStyle={{ width: 280 }}>
+            <View style={styles.row}>
+                <View style={styles.circleContainer}>
+                    <View style={styles.circleView}></View>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={[styles.nameTitle, fontSize.CARD_TITLE]}>ROUTINE NAME</Text>
+                    <Text style={[fontSize.CARD_CONTENT, styles.nameText]}>{routineName}</Text>
+                </View>
+            </View>
+            <View style={styles.row}>
+                <View style={styles.statsContainer}>
+                    <Text style={[styles.statsTitle, fontSize.CARD_TITLE]}>WORKOUTS</Text>
+                    <Text style={[styles.statsText, fontSize.CARD_TITLE]}>{numOfWorkouts}</Text>
+                </View>
+                <View style={styles.statsContainer}>
+                    <Text style={[styles.statsTitle, fontSize.CARD_TITLE]}>EXERCISES</Text>
+                    <Text style={[styles.statsText, fontSize.CARD_TITLE]}>{numOfExercises}</Text>
+                </View>
+            </View>
+        </SwipeableCard>
     )
 }
 
 const styles = StyleSheet.create({
-    otherRoutinesCardContainer: {
+    row: {
         flex: 1,
-        margin: 5,
-        paddingHorizontal: 5,
-        alignItems: "center",
-        alignContent: "center",
+        flexDirection: "row",
         justifyContent: "center",
-        backgroundColor: color.TERTIARY_DARK,
-        height: Dimensions.get("window").width / 5,
-
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
     },
-    otherRoutinesCardText: {
-        lineHeight: 10,
+    circleContainer: {
+        flex: .2,
+        justifyContent: "center",
+    },
+    circleView: {
+        width: 30,
+        height: 30,
+        borderRadius: 30 / 2,
+        backgroundColor: color.HIGHLIGHT
+    },
+    nameContainer: {
+        flex: .75,
+        justifyContent: "center",
+    },
+    nameTitle: {
+        flex: .3,
+        color: color.GREY
+    },
+    nameText: {
+        flex: .4,
         color: color.WHITE,
-        textAlign: "center",
-        textTransform: "uppercase",
-        textAlignVertical: "center",
+    },
+    statsContainer: {
+        flex: 1,
+        height: "100%",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
+    statsTitle: {
+        flex: .3,
+        color: color.GREY,
+    },
+    statsText: {
+        flex: .4,
+        color: color.WHITE,
     }
 })
 
