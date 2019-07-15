@@ -22,10 +22,11 @@ const SwipeableCard = (props) => {
 
 const styles = StyleSheet.create({
     swipeContainer: {
-        flex: 1,
+        // flex: 1,
+        width: "100%"
     },
     viewContainer: {
-        flex: 1,
+        // flex: 1,
         height: 120,
         width: "90%",
         borderRadius: 5,
