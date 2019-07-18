@@ -9,24 +9,29 @@ import { isAssetLoaded } from '../Redux/Actions/initLoadAction';
 
 class Index extends Component {
     componentDidMount() {
+        // React-Navigation optimization for different screens
         useScreens();
     }
 
     async _startResourceAsync() {
+        // Array of all required images
         const images = [require('../assets/Abs.png'), require('../assets/Arms.png'), require('../assets/Back.png'),
         require('../assets/Legs.png'), require('../assets/Save.png'), require('../assets/Chest.png'),
         require('../assets/Shoulders.png')];
 
+        // Array of fonts
         const fonts = {
             'Roboto-Regular': require("../assets/fonts/Roboto-Regular.ttf"),
             'Roboto-Medium': require("../assets/fonts/Roboto-Medium.ttf"),
             'Roboto-Bold': require("../assets/fonts/Roboto-Bold.ttf")
         };
 
+        // For all required images cache to imporve app performance 
         const cacheImages = images.map((image) => {
             return Asset.fromModule(image).downloadAsync();
         });
 
+        // Await for all Promises 
         return Promise.all([cacheImages, Font.loadAsync(fonts)]);
     }
 
