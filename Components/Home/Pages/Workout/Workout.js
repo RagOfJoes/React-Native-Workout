@@ -4,7 +4,9 @@ import { color } from '../../../config/colors';
 import { fontSize } from '../../../config/fontSize';
 import ExerciseCard from './Components/ExerciseCard';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { addExercise, removeExercise } from '../../../../Redux/Actions/workoutAction';
 
+// Check if Exercise is already in Workout
 const isInWorkout = (exercises, item) => {
     let result = false;
     exercises.map((exercise) => {
@@ -16,7 +18,8 @@ const isInWorkout = (exercises, item) => {
     return result;
 }
 
-class Workout extends Component {
+class Workout extends React.PureComponent {
+    // Set Header as the param given when page is called
     static navigationOptions({ navigation }) {
         const Workout = navigation.getParam("workout", "noWorkout");
 
@@ -25,10 +28,12 @@ class Workout extends Component {
         }
     }
 
+    // local state to track current Tab
     state = {
         tab: 1
     }
 
+    // Tab Component
     Tab = () => {
         const { tab } = this.state;
         return (
@@ -58,11 +63,13 @@ class Workout extends Component {
         )
     }
 
+    // Render item in FlatList
     renderItem = ({ Workouts, Exercises }, currentWorkout, Exercise) => {
         const { tab } = this.state;
         const { workouts } = Workouts;
         const { exercises } = Exercises;
 
+        // If Exercise is in Workout
         if (tab === 1 && isInWorkout(workouts[currentWorkout].Exercises, Exercise)) {
             return null;
         }
@@ -70,7 +77,13 @@ class Workout extends Component {
         const { Type } = exercises[Exercise];
 
         return (
-            <ExerciseCard Muscle={Type} Exercise={Exercise} />
+            <ExerciseCard
+                Muscle={Type}
+                Exercise={Exercise}
+                isDeletable={tab === 2}
+                addAction={() => this.props.dispatch(addExercise(currentWorkout, Exercise))}
+                delAction={() => this.props.dispatch(removeExercise(currentWorkout, Exercise))}
+            />
         )
     }
 
@@ -105,9 +118,9 @@ class Workout extends Component {
                         stickyHeaderIndices={[0]}
                         ListHeaderComponent={() => this.Tab()}
                         data={tab === 1 ? exercisesNames : Exercises}
-                        renderItem={({ item, index }) => renderItem(props, Workout, item)}
                         style={{ flex: 1, marginTop: 30, flexDirection: "column" }}
                         keyExtractor={(item, index) => `${Workout}-${item}-${index}`}
+                        renderItem={({ item, index }) => renderItem(props, Workout, item)}
                         getItemLayout={(data, index) => ({ length: HEIGHT, offset: (HEIGHT + 10) * index, index })}
                         ItemSeparatorComponent={(item, index) =>
                             tab === 1 && isInWorkout(Exercises, item.leadingItem) ?
