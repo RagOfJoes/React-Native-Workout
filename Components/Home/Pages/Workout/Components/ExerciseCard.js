@@ -12,9 +12,12 @@ class ExerciseCard extends Component {
         isOpen: false,
         pickedMuscle: "None"
     }
+
+    // Animated Values
     actionMenu = new Animated.Value(0);
     musclePicker = new Animated.Value(0);
 
+    // ActionMenu Actions
     _openActionMenuAnimation = () => {
         Animated.timing(this.actionMenu, {
             toValue: 1,
@@ -73,22 +76,32 @@ class ExerciseCard extends Component {
 
     render() {
         const { props } = this;
-        const { Exercise } = props;
+        const { Exercise, isDeletable, delAction, addAction } = props;
 
         return (
             <SwipeableCard
-                leftAction={(progress, dragX) =>
-                    <DeleteAction
-                        dragX={dragX}
-                        progress={progress}
-                        _pressDel={() => console.log("del")}
-                    />
+                leftAction={(progress, dragX) => {
+                    return (
+                        isDeletable ?
+                            <DeleteAction
+                                dragX={dragX}
+                                progress={progress}
+                                _pressDel={delAction}
+                            />
+                            : <AddAction
+                                isLeft
+                                dragX={dragX}
+                                progress={progress}
+                                _pressAdd={addAction}
+                            />
+                    )
+                }
                 }
                 rightAction={(progress, dragX) =>
                     <AddAction
                         dragX={dragX}
                         progress={progress}
-                        _pressAdd={() => console.log("add")}
+                        _pressAdd={addAction}
                     />
                 }
                 containerStyle={
@@ -97,8 +110,8 @@ class ExerciseCard extends Component {
                         borderRightWidth: 5,
                         flexDirection: "column",
                         justifyContent: "center",
-                        borderLeftColor: color.RED,
-                        borderRightColor: color.GREEN
+                        borderRightColor: color.GREEN,
+                        borderLeftColor: isDeletable ? color.RED : color.GREEN
                     }
                 }>
                 <View style={styles.exerciseCardRowOne}>
