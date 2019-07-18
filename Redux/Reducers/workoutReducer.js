@@ -2,9 +2,12 @@ const initState = {
     workouts: {
         Push: {
             Exercises: ["Bench Press", "Shoulder Press", "Incline Bench Press", "Chest Dips", "Hex", "Lateral Raise", "Pushups"]
+        },
+        Arms: {
+            Exercises: ["Curls", "Pulldowns"]
         }
     },
-    workoutNames: ["Push"]
+    workoutNames: ["Push", "Arms"]
 }
 
 const workoutReducer = (state = initState, action) => {

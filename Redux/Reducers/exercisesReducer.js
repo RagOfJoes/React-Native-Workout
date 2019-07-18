@@ -20,6 +20,12 @@ const initState = {
         },
         ["Pushups"]: {
             Type: "Abs"
+        },
+        ["Curls"]: {
+            Type: "Arms"
+        },
+        ["Pulldowns"]: {
+            Type: "Arms"
         }
     },
     exercisesNames: ["Bench Press", "Shoulder Press", "Incline Bench Press", "Chest Dips", "Hex", "Lateral Raise", "Pushups"]
