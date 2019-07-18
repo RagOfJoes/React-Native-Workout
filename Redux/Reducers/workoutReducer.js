@@ -12,6 +12,26 @@ const initState = {
 
 const workoutReducer = (state = initState, action) => {
     switch (action.type) {
+        case "ADD_EXERCISE":
+            return {
+                ...state,
+                workouts: {
+                    ...state.workouts,
+                    [action.workoutName]: {
+                        Exercises: [...state.workouts[action.workoutName].Exercises, action.exerciseName]
+                    }
+                }
+            }
+        case "REMOVE_EXERCISE":
+            return {
+                ...state,
+                workouts: {
+                    ...state.workouts,
+                    [action.workoutName]: {
+                        Exercises: state.workouts[action.workoutName].Exercises.filter((Exercise) => Exercise !== action.exerciseName)
+                    }
+                }
+            }
         case "NEW_WORKOUT":
             return {
                 ...state,
