@@ -6,12 +6,14 @@ import { View, Text, Dimensions, StyleSheet } from 'react-native';
 
 const OtherRoutinesCard = (props) => {
     const { routineName, numOfWorkouts, numOfExercises } = props;
-
+    const routineInital = routineName[0];
     return (
         <SwipeableCard containerStyle={styles.containerStyle}>
             <View style={styles.row}>
                 <View style={styles.circleContainer}>
-                    <View style={styles.circleView}></View>
+                    <View style={styles.circleView}>
+                        <Text style={[styles.routineInitial, fontSize.SECTION_TITLE]}>{routineInital}</Text>
+                    </View>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTitle, fontSize.CARD_TITLE]}>ROUTINE NAME</Text>
@@ -56,10 +58,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     circleView: {
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: color.HIGHLIGHT,
         width: Dimensions.get("screen").width / 10,
         height: Dimensions.get("screen").width / 10,
         borderRadius: Dimensions.get("screen").width / 20,
+    },
+    routineInitial: {
+        color: color.SECONDARY_DARK
     },
     nameContainer: {
         flex: .8,
