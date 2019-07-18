@@ -5,9 +5,20 @@ import { color } from '../../../config/colors';
 import createUID from '../../../config/createUID';
 import WorkoutCard from './Components/WorkoutCard';
 import { fontSize } from '../../../config/fontSize';
-import { addWorkout, delWorkout } from '../../../../Redux/Actions/routineAction';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { DeleteAction, RightAction, AddAction } from './SwipeActions/Actions';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { delWorkout, newWorkout, addWorkout } from '../../../../Redux/Actions/routineAction';
+
+const isInRoutine = (workouts, item) => {
+    let result = false;
+    workouts.map(workout => {
+        if (workout === item) {
+            result = true;
+        }
+    });
+    return result;
+}
+
 class Routine extends React.PureComponent {
     state = {
         tab: 1,
@@ -18,13 +29,19 @@ class Routine extends React.PureComponent {
         const { tab } = this.state;
         // Props
         const { Workouts, Exercises } = this.props;
+        const { workouts } = Workouts;
         const { exercises } = Exercises;
+
+        // Check if workout is in current routine
+        if (tab === 1 && isInRoutine(currWorkouts, item) === true) {
+            return null;
+        }
 
         // Check if item is deleteable
         const isDeletable = currWorkouts.length > 1;
 
         // Retrieve workouts exercises
-        const workoutExercises = Workouts.workouts[item].Exercises;
+        const workoutExercises = workouts[item].Exercises;
         const numOfExercises = workoutExercises.length;
 
         // Creates a new set(Prevents duplicate Keys) w/ unique Muscle Types.
@@ -55,7 +72,7 @@ class Routine extends React.PureComponent {
                                 isLeft
                                 dragX={dragX}
                                 progress={progress}
-                                _pressAdd={() => console.log("ADD")}
+                                _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine, item))}
                             />
                             :
                             <DeleteAction
@@ -72,14 +89,14 @@ class Routine extends React.PureComponent {
                             <AddAction
                                 dragX={dragX}
                                 progress={progress}
-                                _pressAdd={() => console.log("ADD")}
+                                _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine, item))}
                             />
                             :
                             <RightAction
                                 dragX={dragX}
                                 progress={progress}
                                 _pressEdit={() => this.props.navigation.navigate("Workout", { workout: item })}
-                                _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine, `Workout ${createUID()}`))}
+                                _pressAdd={() => this.props.dispatch(newWorkout(currentRoutine, `Workout ${createUID()}`))}
                             />
                     )
                 }
@@ -133,7 +150,7 @@ class Routine extends React.PureComponent {
                             style={{ flex: 1, flexDirection: "column" }}
                             keyExtractor={(item, index) => `${currentRoutine}-${item}-${index}`}
                             renderItem={({ item, index }) => this.renderItem(currentRoutine, Workouts, item)}
-                            ItemSeparatorComponent={() => <View style={{ width: "100%", height: 10 }}></View>}
+                            ItemSeparatorComponent={(item, index) => tab === 1 && isInRoutine(Workouts, item.leadingItem) ? null : <View style={{ width: "100%", height: 10 }}></View>}
                             getItemLayout={(data, index) => ({ length: HEIGHT, offset: (HEIGHT + 10) * index, index })}
                         />
                     </View>
