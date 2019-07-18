@@ -6,38 +6,28 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { DeleteAction, RightAction } from '../SwipeActions/Actions';
 
 const WorkoutCard = (props) => {
-    const { delAction, addAction, editAction, workoutName, numOfExercises, muscles } = props;
+    const { isEditable, leftAction, rightAction, workoutName, numOfExercises, muscles } = props;
+    const workoutInitial = workoutName[0];
     return (
         <SwipeableCard
-            leftAction={(progress, dragX) =>
-                <DeleteAction
-                    dragX={dragX}
-                    progress={progress}
-                    _pressDel={delAction}
-                />
-            }
-            rightAction={(progress, dragX) =>
-                <RightAction
-                    dragX={dragX}
-                    progress={progress}
-                    _pressAdd={addAction}
-                    _pressEdit={editAction}
-                />
-            }
+            leftAction={leftAction}
+            rightAction={rightAction}
             containerStyle={
                 {
                     borderLeftWidth: 5,
                     borderRightWidth: 5,
                     flexDirection: "column",
                     justifyContent: "center",
-                    borderLeftColor: color.RED,
-                    borderRightColor: color.HIGHLIGHT
+                    borderLeftColor: isEditable ? color.GREEN : color.RED,
+                    borderRightColor: isEditable ? color.GREEN : color.HIGHLIGHT
                 }
             }
         >
             <View style={styles.workoutCol}>
                 <View style={styles.workoutCircleContainer}>
-                    <View style={styles.workoutCircle}></View>
+                    <View style={styles.workoutCircle}>
+                        <Text style={[styles.workoutInit, fontSize.SECTION_TITLE]}>{workoutInitial}</Text>
+                    </View>
                 </View>
                 <TextInput
                     maxLength={60}
@@ -75,8 +65,13 @@ const styles = StyleSheet.create({
     workoutCircle: {
         width: 40,
         height: 40,
+        alignItems: "center",
         borderRadius: 40 / 2,
+        justifyContent: "center",
         backgroundColor: color.HIGHLIGHT
+    },
+    workoutInit: {
+        color: color.SECONDARY_DARK
     },
     workoutName: {
         flex: .75,

@@ -6,10 +6,16 @@ import createUID from '../../../config/createUID';
 import WorkoutCard from './Components/WorkoutCard';
 import { fontSize } from '../../../config/fontSize';
 import { addWorkout, delWorkout } from '../../../../Redux/Actions/routineAction';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { DeleteAction, RightAction, AddAction } from './SwipeActions/Actions';
 class Routine extends React.PureComponent {
+    state = {
+        tab: 1,
+    }
+
     // Custom Render Function
     renderItem = (currentRoutine, currWorkouts, item) => {
+        const { tab } = this.state;
         // Props
         const { Workouts, Exercises } = this.props;
         const { exercises } = Exercises;
@@ -39,20 +45,56 @@ class Routine extends React.PureComponent {
         return (
             <WorkoutCard
                 workoutName={item}
+                isEditable={tab === 1}
                 muscles={musclesString}
                 numOfExercises={numOfExercises}
-                editAction={() => this.props.navigation.navigate("Workout", { workout: item })}
-                addAction={() => this.props.dispatch(addWorkout(currentRoutine, `Workout ${createUID()}`))}
-                delAction={() => isDeletable ? this.props.dispatch(delWorkout(currentRoutine, item)) : null}
+                leftAction={(progress, dragX) => {
+                    return (
+                        tab === 1 ?
+                            <AddAction
+                                isLeft
+                                dragX={dragX}
+                                progress={progress}
+                                _pressAdd={() => console.log("ADD")}
+                            />
+                            :
+                            <DeleteAction
+                                dragX={dragX}
+                                progress={progress}
+                                _pressDel={() => isDeletable ? this.props.dispatch(delWorkout(currentRoutine, item)) : null}
+                            />
+                    )
+                }
+                }
+                rightAction={(progress, dragX) => {
+                    return (
+                        tab === 1 ?
+                            <AddAction
+                                dragX={dragX}
+                                progress={progress}
+                                _pressAdd={() => console.log("ADD")}
+                            />
+                            :
+                            <RightAction
+                                dragX={dragX}
+                                progress={progress}
+                                _pressEdit={() => this.props.navigation.navigate("Workout", { workout: item })}
+                                _pressAdd={() => this.props.dispatch(addWorkout(currentRoutine, `Workout ${createUID()}`))}
+                            />
+                    )
+                }
+                }
             />
         )
     }
 
     render() {
         const HEIGHT = 120;
-        const { props } = this;
+        const { state, props } = this;
+        const { tab } = state;
         const { routines, currentRoutine } = props.Routines;
         const { Workouts } = routines[currentRoutine];
+        const { workoutNames } = props.Workouts;
 
         return (
             <View style={styles.RoutineWrapper} >
@@ -61,13 +103,33 @@ class Routine extends React.PureComponent {
                     {/* Start Workouts Card */}
                     <View style={styles.workoutRow}>
                         <View style={styles.workoutTitleCol}>
-                            <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ tab: 1 })}
+                                style={[
+                                    {
+                                        borderTopLeftRadius: 5,
+                                        backgroundColor: tab === 1 ? color.SECONDARY_DARK : color.TERTIARY_DARK
+                                    },
+                                    styles.workoutTabContainer]
+                                }>
+                                <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>LIBRARY</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ tab: 2 })}
+                                style={[
+                                    {
+                                        borderTopRightRadius: 5,
+                                        backgroundColor: tab === 2 ? color.SECONDARY_DARK : color.TERTIARY_DARK
+                                    },
+                                    styles.workoutTabContainer]}>
+                                <Text style={[fontSize.SECTION_TITLE, styles.workoutTitle]}>WORKOUTS</Text>
+                            </TouchableOpacity>
                         </View>
                         <FlatList
                             numColumns="1"
-                            data={Workouts}
                             extraData={Workouts}
                             overScrollMode="never"
+                            data={tab === 1 ? workoutNames : Workouts}
                             style={{ flex: 1, flexDirection: "column" }}
                             keyExtractor={(item, index) => `${currentRoutine}-${item}-${index}`}
                             renderItem={({ item, index }) => this.renderItem(currentRoutine, Workouts, item)}
@@ -108,14 +170,22 @@ const styles = StyleSheet.create({
     workoutTitleCol: {
         flex: .1,
         height: 20,
-        width: "100%",
+        width: "90%",
+        alignSelf: "center",
         alignItems: "center",
         flexDirection: "row",
         alignContent: "center",
         justifyContent: "center",
     },
-    workoutTitle: {
+    workoutTabContainer: {
+        flex: 1,
         width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    workoutTitle: {
+        flex: .5,
         color: color.WHITE,
         textAlign: 'center'
     },
