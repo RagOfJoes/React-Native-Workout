@@ -17,13 +17,13 @@ export const DeleteAction = ({ dragX, _pressDel }) => {
     )
 }
 
-export const AddAction = ({ dragX, progress, _pressAdd }) => {
+export const AddAction = ({ dragX, progress, isLeft, _pressAdd }) => {
     const opacity = dragX.interpolate({
-        inputRange: [-65, 0],
-        outputRange: [1, 0]
+        inputRange: isLeft ? [0, 60] : [-65, 0],
+        outputRange: isLeft ? [0, 1] : [1, 0]
     });
     return (
-        <Animated.View style={[{ opacity: opacity, marginLeft: "-5%" }, styles.singlActionRow]}>
+        <Animated.View style={[isLeft ? { marginRight: "-5%" } : { marginLeft: "-5%" }, { opacity: opacity }, styles.singlActionRow]}>
             <TouchableOpacity onPress={_pressAdd} style={styles.addActionCol}>
                 <Text style={[fontSize.CARD_CONTENT, { color: color.WHITE, textAlign: "center" }]}>ADD</Text>
             </TouchableOpacity>
