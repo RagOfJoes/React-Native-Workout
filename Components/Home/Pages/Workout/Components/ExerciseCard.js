@@ -4,7 +4,7 @@ import Muscle from '../../../../Views/Muscle';
 import { color } from '../../../../config/colors';
 import { fontSize } from '../../../../config/fontSize';
 import SwipeableCard from '../../../../Views/SwipeableCard';
-import { DeleteAction, AddAction } from '../SwipeActions/Actions';
+import { DeleteAction, AddAction } from '../../Routine/SwipeActions/Actions';
 import { View, Text, Animated, Dimensions, TextInput, StyleSheet } from 'react-native';
 
 class ExerciseCard extends Component {
