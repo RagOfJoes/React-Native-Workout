@@ -12,7 +12,7 @@ const initState = {
 
 const workoutReducer = (state = initState, action) => {
     switch (action.type) {
-        case "ADD_WORKOUT":
+        case "NEW_WORKOUT":
             return {
                 ...state,
                 workouts: {

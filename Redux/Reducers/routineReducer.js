@@ -10,7 +10,7 @@ const initState = {
 
 const routineReducer = (state = initState, action) => {
     switch (action.type) {
-        case "ADD_WORKOUT":
+        case "NEW_WORKOUT":
             return {
                 ...state,
                 routines: {
@@ -19,6 +19,17 @@ const routineReducer = (state = initState, action) => {
                         ...state.routines[action.routineName],
                         Workouts: [...state.routines[action.routineName].Workouts, action.defaultWorkoutName]
                     },
+                }
+            }
+        case "ADD_WORKOUT":
+            return {
+                ...state,
+                routines: {
+                    ...state.routines,
+                    [action.routineName]: {
+                        ...state.routines[action.routineName],
+                        Workouts: [...state.routines[action.routineName].Workouts, action.workoutName]
+                    }
                 }
             }
         case "DEL_WORKOUT":
