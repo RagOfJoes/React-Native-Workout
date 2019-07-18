@@ -14,7 +14,7 @@ const getToday = () => {
 // TODO: On click of Day open page containing Workout
 const Week = (props) => {
     return (
-        <View style={{ flex: .15, width: "90%", flexDirection: "row", alignItems: "center", alignSelf: "center" }}>
+        <View style={{ flex: .1, width: "90%", flexDirection: "row", alignItems: "center", alignSelf: "center" }}>
             <FlatList
                 data={days}
                 numColumns="7"

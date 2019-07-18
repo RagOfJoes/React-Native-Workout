@@ -11,7 +11,7 @@ const TodayWorkout = (props) => {
     const { routines, currentRoutine } = Routines;
     const { Exercises } = workouts[routines[currentRoutine].Workouts[0]];
     return (
-        <View style={{ flex: .5, justifyContent: "center" }}>
+        <View style={{ flex: .45, justifyContent: "center" }}>
             <Text style={[fontSize.SECTION_TITLE, { width: "90%", color: color.WHITE, alignSelf: "center" }]}>TODAY'S WORKOUT</Text>
             <WorkoutCard
                 exercises={Exercises}

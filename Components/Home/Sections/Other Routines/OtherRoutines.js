@@ -48,7 +48,7 @@ const OtherRoutines = (props) => {
 
 const styles = StyleSheet.create({
     otherRoutineContainer: {
-        flex: .3,
+        flex: .25,
         width: "100%",
         alignSelf: "center",
         justifyContent: "center"
