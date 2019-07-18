@@ -1,16 +1,18 @@
 import React from 'react';
+import Week from './Sections/Week/Week';
 import { color } from '../config/colors';
 import { View, StyleSheet } from 'react-native';
-import NextWorkout from './Sections/Next Workout/NextWorkout';
+import UserProgress from './Sections/User Progress/UserProgress';
+import TodayWorkout from './Sections/Today Workout/TodayWorkout';
 import OtherRoutines from './Sections/Other Routines/OtherRoutines';
-import CurrentRoutine from './Sections/Current Routine/CurrentRoutine';
 
 const Home = (props) => {
     return (
         <View style={styles.container}>
-            <NextWorkout />
-            <CurrentRoutine />
+            <Week />
+            <TodayWorkout />
             <OtherRoutines />
+            <UserProgress />
         </View>
     )
 }
