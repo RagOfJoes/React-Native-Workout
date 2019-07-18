@@ -1,9 +1,7 @@
-export const newWorkout = (routineName, defaultWorkoutName) => {
-    return {
-        type: "NEW_WORKOUT",
-        routineName, defaultWorkoutName
-    };
-}
+export const newWorkout = (routineName, defaultWorkoutName) => ({
+    type: "NEW_WORKOUT",
+    routineName, defaultWorkoutName
+})
 
 export const addWorkout = (routineName, workoutName) => ({
     type: "ADD_WORKOUT",
