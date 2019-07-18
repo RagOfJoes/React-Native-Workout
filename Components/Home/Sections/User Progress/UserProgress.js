@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
     colMiddle: {
         flex: .8,
         height: "70%",
-        borderLeftWidth: .25,
-        borderRightWidth: .25,
+        borderLeftWidth: .5,
+        borderRightWidth: .5,
         justifyContent: "center",
-        borderLeftColor: color.WHITE,
-        borderRightColor: color.WHITE
+        borderLeftColor: color.GREY,
+        borderRightColor: color.GREY
     },
     title: {
         color: color.GREY,
