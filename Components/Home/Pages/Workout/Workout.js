@@ -1,8 +1,20 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { color } from '../../../config/colors';
-import { View, FlatList, StyleSheet } from 'react-native';
-import ExerciseCard from '../Routine/Components/ExerciseCard';
+import { fontSize } from '../../../config/fontSize';
+import ExerciseCard from './Components/ExerciseCard';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+
+const isInWorkout = (exercises, item) => {
+    let result = false;
+    exercises.map((exercise) => {
+        if (exercise === item) {
+            result = true;
+        }
+    })
+
+    return result;
+}
 
 class Workout extends Component {
     static navigationOptions({ navigation }) {
@@ -13,8 +25,48 @@ class Workout extends Component {
         }
     }
 
-    renderItem = ({ Exercises }, Exercise) => {
+    state = {
+        tab: 1
+    }
+
+    Tab = () => {
+        const { tab } = this.state;
+        return (
+            <View style={styles.tabCol}>
+                <TouchableOpacity
+                    onPress={() => this.setState({ tab: 1 })}
+                    style={[
+                        {
+                            borderTopLeftRadius: 5,
+                            backgroundColor: tab === 1 ? color.SECONDARY_DARK : color.TERTIARY_DARK
+                        },
+                        styles.tabContainer]
+                    }>
+                    <Text style={[fontSize.SECTION_TITLE, styles.tabTitle]}>LIBRARY</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.setState({ tab: 2 })}
+                    style={[
+                        {
+                            borderTopRightRadius: 5,
+                            backgroundColor: tab === 2 ? color.SECONDARY_DARK : color.TERTIARY_DARK
+                        },
+                        styles.tabContainer]}>
+                    <Text style={[fontSize.SECTION_TITLE, styles.tabTitle]}>EXERCISES</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    renderItem = ({ Workouts, Exercises }, currentWorkout, Exercise) => {
+        const { tab } = this.state;
+        const { workouts } = Workouts;
         const { exercises } = Exercises;
+
+        if (tab === 1 && isInWorkout(workouts[currentWorkout].Exercises, Exercise)) {
+            return null;
+        }
+
         const { Type } = exercises[Exercise];
 
         return (
@@ -24,6 +76,7 @@ class Workout extends Component {
 
     render() {
         const HEIGHT = 120;
+        const { tab } = this.state;
         const { props, renderItem } = this;
         const { navigation, Workouts } = props;
 
@@ -31,6 +84,7 @@ class Workout extends Component {
         const Workout = navigation.getParam("workout", "noWorkout");
 
         const { workouts } = Workouts;
+        const { exercisesNames } = props.Exercises;
 
         // Get Exercises from current Workout
         const { Exercises } = workouts[Workout];
@@ -46,14 +100,19 @@ class Workout extends Component {
                 <View style={styles.container}>
                     <FlatList
                         numColumns="1"
-                        data={Exercises}
                         extraData={Exercises}
                         overScrollMode="never"
-                        renderItem={({ item, index }) => renderItem(props, item)}
+                        stickyHeaderIndices={[0]}
+                        ListHeaderComponent={() => this.Tab()}
+                        data={tab === 1 ? exercisesNames : Exercises}
+                        renderItem={({ item, index }) => renderItem(props, Workout, item)}
                         style={{ flex: 1, marginTop: 30, flexDirection: "column" }}
                         keyExtractor={(item, index) => `${Workout}-${item}-${index}`}
-                        ItemSeparatorComponent={() => <View style={{ width: "100%", height: 10 }}></View>}
                         getItemLayout={(data, index) => ({ length: HEIGHT, offset: (HEIGHT + 10) * index, index })}
+                        ItemSeparatorComponent={(item, index) =>
+                            tab === 1 && isInWorkout(Exercises, item.leadingItem) ?
+                                null
+                                : <View style={{ width: "100%", height: 10 }}></View>}
                     />
                 </View>
             )
@@ -74,6 +133,29 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column"
     },
+    tabCol: {
+        flex: 1,
+        height: 40,
+        width: "90%",
+        alignSelf: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center",
+        backgroundColor: color.PRIMARY_DARK
+    },
+    tabContainer: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    tabTitle: {
+        flex: .5,
+        color: color.WHITE,
+        textAlign: 'center'
+    }
 })
 
 const mapStateToProps = (state) => {
